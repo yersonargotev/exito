@@ -130,19 +130,29 @@ Desarrollar una aplicación de e-commerce con React/Next.js que incluya lista de
   - [x] **Responsive design** completo
   - [x] **Información adicional** (envío, garantía, soporte)
 
-### 3. Página de Carrito (`/cart`)
-- [ ] Crear página del carrito de compras
-- [ ] Lista de productos en el carrito
-  - [ ] Card de producto con imagen, nombre, precio
-  - [ ] Controles de cantidad (+/-)
-  - [ ] Botón eliminar producto
-  - [ ] Subtotal por producto
-- [ ] Resumen del carrito
-  - [ ] Total de items
-  - [ ] Precio total
-  - [ ] Botón "Proceder al pago"
-- [ ] Estado vacío del carrito
-- [ ] Validaciones de cantidad mínima/máxima
+### 3. ✅ Página de Carrito (`/cart`) - **COMPLETADA** 🛒
+- [x] Crear página del carrito de compras
+- [x] Lista de productos en el carrito
+  - [x] Card de producto con imagen, nombre, precio
+  - [x] Controles de cantidad (+/-)
+  - [x] Botón eliminar producto
+  - [x] Subtotal por producto
+- [x] Resumen del carrito
+  - [x] Total de items
+  - [x] Precio total
+  - [x] Botón "Proceder al pago"
+- [x] Estado vacío del carrito
+- [x] Validaciones de cantidad mínima/máxima
+- [x] **NUEVAS CARACTERÍSTICAS AGREGADAS:**
+  - [x] **Diseño responsive** mobile-first con CTA fijo en mobile
+  - [x] **Notificaciones** con Sonner para feedback de usuario
+  - [x] **Hidratación segura** para Next.js con estados de carga
+  - [x] **Formateo de precios** en COP con conversión automática
+  - [x] **Cálculo de envío** automático con umbral de envío gratis
+  - [x] **Políticas de compra** e información adicional
+  - [x] **Estados optimizados** (vacío, carga, error)
+  - [x] **Controles avanzados** con validaciones min/max
+  - [x] **Componentes reutilizables** bien estructurados
 
 ### 4. Página de Pago (`/checkout`) - Opcional
 - [ ] Crear página de checkout
@@ -240,7 +250,8 @@ Desarrollar una aplicación de e-commerce con React/Next.js que incluya lista de
 - ✅ **Gestión de Estado** (100%)
 - ✅ **Página Principal** (100%) - **CON INFINITE SCROLL** 🚀
 - ✅ **Página de Detalle** (100%) - **CON NOTIFICACIONES** 🎉
-- 🔄 **Próximo**: Página de carrito
+- ✅ **Página de Carrito** (100%) - **CON DISEÑO MOBILE-FIRST** 🛒
+- 🔄 **Próximo**: Página de checkout (opcional) o testing y deployment
 
 ---
 
