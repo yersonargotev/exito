@@ -21,17 +21,17 @@ Desarrollar una aplicación de e-commerce con React/Next.js que incluya lista de
 ## 🏗️ Estructura y Layout
 
 ### Header y Footer
-- [ ] Crear componente `Header`
-  - [ ] Logo/marca de la tienda
-  - [ ] Navegación principal
-  - [ ] Buscador de productos
-  - [ ] Indicador de carrito con cantidad de items
-  - [ ] Hacer responsive
-- [ ] Crear componente `Footer`
-  - [ ] Información de contacto
-  - [ ] Links útiles
-  - [ ] Hacer responsive
-- [ ] Integrar Header y Footer en layout principal
+- [x] Crear componente `Header`
+  - [x] Logo/marca de la tienda
+  - [x] Navegación principal
+  - [x] Buscador de productos
+  - [x] Indicador de carrito con cantidad de items
+  - [x] Hacer responsive
+- [x] Crear componente `Footer`
+  - [x] Información de contacto
+  - [x] Links útiles
+  - [x] Hacer responsive
+- [x] Integrar Header y Footer en layout principal
 
 ## 🛍️ Gestión de Estado
 
