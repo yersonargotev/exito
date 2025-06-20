@@ -1,5 +1,6 @@
 import { QueryProvider } from '@/components/providers/query-client-provider';
 import { ThemeProvider } from '@/components/providers/theme-provider';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -10,7 +11,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         enableSystem
         disableTransitionOnChange
       >
-        {children}
+        <NuqsAdapter>{children}</NuqsAdapter>
       </ThemeProvider>
     </QueryProvider>
   );
