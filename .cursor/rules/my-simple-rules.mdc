@@ -1,0 +1,34 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+- **Always use `pnpm`** as the package manager for this project
+  - Commands: `pnpm install`, `pnpm add`, `pnpm remove`
+- **Use Lucide React icons** for all icon needs
+  - Import: `import { IconName } from "lucide-react"`
+- **Always use Sonner** for toast notifications
+  - Import: `import { toast } from "sonner"`
+- **Use TanStack Table with shadcn/ui** for table management
+  - Libraries: `@tanstack/react-table` + shadcn/ui table components
+- **Use kebab-case** for all file and directory names
+  - ✅ Correct: `user-profile.tsx`, `api-client.ts`
+  - ❌ Incorrect: `UserProfile.tsx`, `apiClient.ts`
+- **Use PascalCase** for React component names
+  - ✅ Correct: `UserProfile`, `ProductCard`, `NavigationMenu`
+  - ❌ Incorrect: `userProfile`, `productCard`, `navigation_menu`
+- **Use camelCase** for function names
+  - ✅ Correct: `getUserData`, `handleSubmit`, `calculateTotal`
+  - ❌ Incorrect: `GetUserData`, `handle_submit`, `calculate-total`
+- **Use TanStack Query** for managing async requests and server state
+  - Library: `@tanstack/react-query`
+- **Use TanStack Form** for form management
+  - Library: `@tanstack/react-form`
+- **Use Context7** to get up-to-date information about libraries
+
+## Additional Guidelines
+
+- Maintain consistency across the codebase
+- Follow TypeScript best practices for type safety
+- Use these conventions in all new code and when refactoring existing code
+- Document any deviations from these rules with clear reasoning
