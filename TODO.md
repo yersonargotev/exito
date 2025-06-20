@@ -13,10 +13,10 @@ Desarrollar una aplicación de e-commerce con React/Next.js que incluya lista de
 - [x] Configurar Zustand para estado global
 - [x] Configurar Lucide React para iconos
 
-### 🔄 Configuración Pendiente
-- [ ] Configurar tipos TypeScript para la API de FakeStore
-- [ ] Configurar cliente HTTP para consumir la API
-- [ ] Configurar variables de entorno si es necesario
+### ✅ Configuración Completada
+- [x] Configurar tipos TypeScript para la API de FakeStore
+- [x] Configurar cliente HTTP para consumir la API
+- [x] Configurar variables de entorno (opcional)
 
 ## 🏗️ Estructura y Layout
 
