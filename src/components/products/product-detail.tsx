@@ -1,15 +1,15 @@
 'use client';
 
+import { ProductActions } from '@/components/products/product-actions';
+import { ProductBreadcrumb } from '@/components/products/product-breadcrumb';
+import { ProductImage } from '@/components/products/product-image';
+import { ProductInfo } from '@/components/products/product-info';
 import { Button } from '@/components/ui/button';
 import { ErrorMessage } from '@/components/ui/error-message';
 import { useProductCart } from '@/hooks/use-cart';
 import { useProduct } from '@/hooks/use-products';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { ProductActions } from './product-actions';
-import { ProductBreadcrumb } from './product-breadcrumb';
-import { ProductImage } from './product-image';
-import { ProductInfo } from './product-info';
 
 interface ProductDetailProps {
     productId: number;
