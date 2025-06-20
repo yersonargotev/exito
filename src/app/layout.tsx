@@ -1,6 +1,5 @@
-import { ThemeProvider } from "@/components/providers/theme-provider";
 import "@/styles/globals.css";
-
+import { Providers } from "@/components/providers/providers";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 
@@ -21,14 +20,9 @@ export default function RootLayout({
 	return (
 		<html lang="en" className={`${geist.variable}`} suppressHydrationWarning>
 			<body>
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="system"
-					enableSystem
-					disableTransitionOnChange
-				>
+				<Providers>
 					{children}
-				</ThemeProvider>
+				</Providers>
 			</body>
 		</html>
 	);
