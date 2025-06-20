@@ -1,12 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
 import {
   getCategories,
   getProductById,
   getProducts,
   getProductsByCategory,
   searchProducts,
-} from '../api';
-import type { ProductCategory } from '../types';
+} from '@/lib/api';
+import type { ProductCategory } from '@/lib/types';
+import { useQuery } from '@tanstack/react-query';
 
 // Hook para obtener todos los productos
 export function useProducts() {

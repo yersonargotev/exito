@@ -1,6 +1,6 @@
-import { env } from '../env';
-import fakestoreData from './fakestore.json';
-import type { Product, ProductCategory } from './types';
+import { env } from '@/env';
+import fakestoreData from '@/lib/fakestore.json';
+import type { Product, ProductCategory } from '@/lib/types';
 
 const API_BASE_URL = 'https://fakestoreapi.com';
 
