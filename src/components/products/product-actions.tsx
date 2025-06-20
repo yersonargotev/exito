@@ -77,8 +77,8 @@ export function ProductActions({ product, productCart }: ProductActionsProps) {
     if (!productCart?.isHydrated) {
         return (
             <div className="space-y-4">
-                <div className="h-12 animate-pulse rounded bg-gray-200" />
-                <div className="h-10 animate-pulse rounded bg-gray-200" />
+                <div className="h-12 animate-pulse rounded bg-muted" />
+                <div className="h-10 animate-pulse rounded bg-muted" />
             </div>
         );
     }
@@ -91,10 +91,10 @@ export function ProductActions({ product, productCart }: ProductActionsProps) {
                     <div className="space-y-4">
                         {/* Quantity Controls */}
                         <div className="flex items-center gap-4">
-                            <span className="font-medium text-gray-700 text-sm">
+                            <span className="font-medium text-foreground text-sm">
                                 Cantidad:
                             </span>
-                            <div className="flex items-center rounded-lg border border-gray-300">
+                            <div className="flex items-center rounded-lg border border-border">
                                 <Button
                                     variant="ghost"
                                     size="sm"
