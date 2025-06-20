@@ -3,6 +3,7 @@ import type { Product } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { Minus, Plus, ShoppingCart, Star } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface ProductCardProps {
     product: Product;
