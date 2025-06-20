@@ -74,18 +74,36 @@ Desarrollar una aplicación de e-commerce con React/Next.js que incluya lista de
 
 ## 📄 Páginas Principales
 
-### 1. Página de Inicio (`/`)
-- [ ] Crear layout de la página principal
-- [ ] Implementar lista de productos
-  - [ ] Grid responsive de productos
-  - [ ] Card de producto con imagen, nombre, precio
-  - [ ] Botón "Agregar al carrito" en cada card
-- [ ] Implementar buscador de productos
-  - [ ] Input de búsqueda en header
-  - [ ] Filtrado en tiempo real
-  - [ ] Manejo de estado de búsqueda con nuqs
-- [ ] Implementar states de carga y error
-- [ ] Paginación o scroll infinito (opcional)
+### 1. ✅ Página de Inicio (`/`)
+- [x] Crear layout de la página principal
+- [x] Implementar lista de productos
+  - [x] Grid responsive de productos
+  - [x] Card de producto con imagen, nombre, precio
+  - [x] Botón "Agregar al carrito" en cada card
+  - [x] **INFINITE SCROLL** implementado con TanStack Query
+  - [x] **Intersection Observer** para carga automática
+  - [x] Estados de carga y error optimizados
+- [x] Implementar buscador de productos
+  - [x] Input de búsqueda en tiempo real
+  - [x] Filtrado en tiempo real
+  - [x] Debounce automático (mínimo 2 caracteres)
+- [x] Implementar filtros por categoría
+  - [x] Botones de categorías responsive
+  - [x] Filtros activos con chips
+  - [x] Limpiar filtros
+- [x] Implementar states de carga y error
+  - [x] Spinners de carga
+  - [x] Mensajes de error con retry
+  - [x] Estados vacíos informativos
+- [x] **NUEVAS CARACTERÍSTICAS AGREGADAS:**
+  - [x] **Paginación infinita** con `useInfiniteQuery`
+  - [x] **Auto-scroll detection** con Intersection Observer
+  - [x] **Filtros avanzados** (búsqueda + categorías)
+  - [x] **UI responsiva** para móvil y desktop
+  - [x] **Controles de carrito** integrados en cada tarjeta
+  - [x] **Gestión de estado** optimizada con TanStack Query
+  - [x] **Hero section** con navegación suave
+  - [x] **Call-to-action** sections
 
 ### 2. Página de Detalle de Producto (`/product/[id]`)
 - [ ] Crear página dinámica para detalle de producto
@@ -197,13 +215,20 @@ Desarrollar una aplicación de e-commerce con React/Next.js que incluya lista de
 ## 🔄 Orden de Desarrollo Recomendado
 
 1. **✅ Setup y Configuración**: Tipos, servicios API, store de carrito
-2. **Layout Base**: Header, Footer, componentes base
-3. **Página Principal**: Lista de productos con búsqueda
+2. **✅ Layout Base**: Header, Footer, componentes base
+3. **✅ Página Principal**: Lista de productos con búsqueda e infinite scroll
 4. **Carrito**: Funcionalidad completa del carrito
 5. **Detalle de Producto**: Página individual de producto
 6. **Checkout**: Página de pago (opcional)
 7. **Testing y Optimizaciones**: Pruebas y performance
 8. **Deployment**: Subir a producción
+
+### 📊 Progreso Actual
+- ✅ **Configuración completa** (100%)
+- ✅ **Servicios API** (100%) 
+- ✅ **Gestión de Estado** (100%)
+- ✅ **Página Principal** (100%) - **CON INFINITE SCROLL** 🚀
+- 🔄 **Próximo**: Página de carrito y detalle de producto
 
 ---
 

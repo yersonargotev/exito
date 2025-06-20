@@ -3,10 +3,11 @@ import {
   getProductById,
   getProducts,
   getProductsByCategory,
+  getProductsPaginated,
   searchProducts,
 } from '@/lib/api';
 import type { ApiError, ProductCategory, ProductFilters } from '@/lib/types';
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { useCallback } from 'react';
 
 // Utility function to handle API errors
@@ -196,4 +197,81 @@ export function useApiError() {
   }, []);
 
   return { handleError };
+}
+
+// Hook para infinite scroll de productos
+export function useInfiniteProducts(
+  filters: {
+    category?: ProductCategory;
+    search?: string;
+    limit?: number;
+  } = {},
+) {
+  const { category, search, limit = 8 } = filters;
+
+  return useInfiniteQuery({
+    queryKey: ['products', 'infinite', { category, search, limit }],
+    queryFn: ({ pageParam = 0 }) =>
+      getProductsPaginated({
+        pageParam,
+        limit,
+        category,
+        search,
+      }),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => lastPage.nextCursor,
+    staleTime: 5 * 60 * 1000, // 5 minutos
+    retry: 3,
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+    enabled: !search || search.length >= 2, // Solo buscar si hay al menos 2 caracteres
+  });
+}
+
+// Hook para obtener datos de productos en formato plano para infinite scroll
+export function useInfiniteProductsFlat(
+  filters: {
+    category?: ProductCategory;
+    search?: string;
+    limit?: number;
+  } = {},
+) {
+  const query = useInfiniteProducts(filters);
+
+  // Aplanar todas las páginas en una sola lista
+  const products = query.data?.pages.flatMap((page) => page.data) ?? [];
+  const totalCount = query.data?.pages[0]?.totalCount ?? 0;
+
+  return {
+    ...query,
+    products,
+    totalCount,
+  };
+}
+
+// Hook para manejar scroll infinito con detector automático
+export function useInfiniteProductsWithAutoLoad(
+  filters: {
+    category?: ProductCategory;
+    search?: string;
+    limit?: number;
+  } = {},
+) {
+  const query = useInfiniteProductsFlat(filters);
+
+  // Función para cargar más datos cuando sea seguro
+  const loadMore = useCallback(() => {
+    if (query.hasNextPage && !query.isFetching && !query.isFetchingNextPage) {
+      query.fetchNextPage();
+    }
+  }, [
+    query.hasNextPage,
+    query.isFetching,
+    query.isFetchingNextPage,
+    query.fetchNextPage,
+  ]);
+
+  return {
+    ...query,
+    loadMore,
+  };
 }

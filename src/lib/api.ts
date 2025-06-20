@@ -11,6 +11,22 @@ const USE_LOCAL_DATA = env.USE_LOCAL_DATA
   ? env.USE_LOCAL_DATA === 'true'
   : env.NODE_ENV === 'development';
 
+// Tipos para paginación
+export interface PaginatedProductsResponse {
+  data: Product[];
+  nextCursor?: number;
+  hasNextPage: boolean;
+  totalCount: number;
+}
+
+// Parámetros para la paginación
+export interface ProductsPaginationParams {
+  pageParam?: number;
+  limit?: number;
+  category?: ProductCategory;
+  search?: string;
+}
+
 class ApiClient {
   private baseUrl: string;
 
@@ -37,6 +53,79 @@ class ApiClient {
     }
 
     return this.fetchFromApi<Product[]>('/products');
+  }
+
+  // Obtener productos paginados para infinite scroll
+  async getProductsPaginated(
+    params: ProductsPaginationParams,
+  ): Promise<PaginatedProductsResponse> {
+    const { pageParam = 0, limit = 8, category, search } = params;
+
+    if (USE_LOCAL_DATA) {
+      // Simular delay de red
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
+      let filteredData = [...fakestoreData] as Product[];
+
+      // Aplicar filtros
+      if (category) {
+        filteredData = filteredData.filter((p) => p.category === category);
+      }
+
+      if (search && search.length >= 2) {
+        const searchTerm = search.toLowerCase();
+        filteredData = filteredData.filter(
+          (p) =>
+            p.title.toLowerCase().includes(searchTerm) ||
+            p.description.toLowerCase().includes(searchTerm) ||
+            p.category.toLowerCase().includes(searchTerm),
+        );
+      }
+
+      // Calcular paginación
+      const startIndex = pageParam * limit;
+      const endIndex = startIndex + limit;
+      const paginatedData = filteredData.slice(startIndex, endIndex);
+      const hasNextPage = endIndex < filteredData.length;
+
+      return {
+        data: paginatedData,
+        nextCursor: hasNextPage ? pageParam + 1 : undefined,
+        hasNextPage,
+        totalCount: filteredData.length,
+      };
+    }
+
+    // Para API real, necesitaríamos adaptar según sus capacidades de paginación
+    // Como la FakeStore API no soporta paginación real, simulamos con todos los productos
+    const allProducts = await this.getProducts();
+    let filteredData = allProducts;
+
+    if (category) {
+      filteredData = filteredData.filter((p) => p.category === category);
+    }
+
+    if (search && search.length >= 2) {
+      const searchTerm = search.toLowerCase();
+      filteredData = filteredData.filter(
+        (p) =>
+          p.title.toLowerCase().includes(searchTerm) ||
+          p.description.toLowerCase().includes(searchTerm) ||
+          p.category.toLowerCase().includes(searchTerm),
+      );
+    }
+
+    const startIndex = pageParam * limit;
+    const endIndex = startIndex + limit;
+    const paginatedData = filteredData.slice(startIndex, endIndex);
+    const hasNextPage = endIndex < filteredData.length;
+
+    return {
+      data: paginatedData,
+      nextCursor: hasNextPage ? pageParam + 1 : undefined,
+      hasNextPage,
+      totalCount: filteredData.length,
+    };
   }
 
   // Obtener producto por ID
@@ -104,6 +193,8 @@ export const apiClient = new ApiClient();
 
 // Funciones helper para uso directo
 export const getProducts = () => apiClient.getProducts();
+export const getProductsPaginated = (params: ProductsPaginationParams) =>
+  apiClient.getProductsPaginated(params);
 export const getProductById = (id: number) => apiClient.getProductById(id);
 export const getProductsByCategory = (category: ProductCategory) =>
   apiClient.getProductsByCategory(category);
