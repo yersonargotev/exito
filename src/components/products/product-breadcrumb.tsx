@@ -14,10 +14,10 @@ export function ProductBreadcrumb({ product }: ProductBreadcrumbProps) {
     };
 
     return (
-        <nav className='mb-6 flex items-center space-x-2 text-gray-500 text-sm'>
+        <nav className="mb-6 flex items-center space-x-2 text-muted-foreground text-sm">
             <a
                 href="/"
-                className='flex items-center gap-1 transition-colors hover:text-gray-700'
+                className="flex items-center gap-1 transition-colors hover:text-foreground"
             >
                 <Home className="h-4 w-4" />
                 Inicio
@@ -25,13 +25,13 @@ export function ProductBreadcrumb({ product }: ProductBreadcrumbProps) {
 
             <ChevronRight className="h-4 w-4" />
 
-            <span className='cursor-pointer transition-colors hover:text-gray-700'>
+            <span className="cursor-pointer transition-colors hover:text-foreground">
                 {formatCategory(product.category)}
             </span>
 
             <ChevronRight className="h-4 w-4" />
 
-            <span className='max-w-md truncate font-medium text-gray-900'>
+            <span className="max-w-md truncate font-medium text-foreground">
                 {product.title}
             </span>
         </nav>

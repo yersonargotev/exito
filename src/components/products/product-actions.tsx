@@ -77,8 +77,8 @@ export function ProductActions({ product, productCart }: ProductActionsProps) {
     if (!productCart?.isHydrated) {
         return (
             <div className="space-y-4">
-                <div className='h-12 animate-pulse rounded bg-gray-200' />
-                <div className='h-10 animate-pulse rounded bg-gray-200' />
+                <div className="h-12 animate-pulse rounded bg-gray-200" />
+                <div className="h-10 animate-pulse rounded bg-gray-200" />
             </div>
         );
     }
@@ -91,10 +91,10 @@ export function ProductActions({ product, productCart }: ProductActionsProps) {
                     <div className="space-y-4">
                         {/* Quantity Controls */}
                         <div className="flex items-center gap-4">
-                            <span className='font-medium text-gray-700 text-sm'>
+                            <span className="font-medium text-gray-700 text-sm">
                                 Cantidad:
                             </span>
-                            <div className='flex items-center rounded-lg border border-gray-300'>
+                            <div className="flex items-center rounded-lg border border-gray-300">
                                 <Button
                                     variant="ghost"
                                     size="sm"
@@ -103,7 +103,7 @@ export function ProductActions({ product, productCart }: ProductActionsProps) {
                                 >
                                     <Minus className="h-4 w-4" />
                                 </Button>
-                                <span className='flex h-10 min-w-[60px] items-center justify-center font-medium text-base'>
+                                <span className="flex h-10 min-w-[60px] items-center justify-center font-medium text-base">
                                     {productCart.quantity}
                                 </span>
                                 <Button
@@ -118,12 +118,12 @@ export function ProductActions({ product, productCart }: ProductActionsProps) {
                         </div>
 
                         {/* Success message */}
-                        <div className='rounded-lg border border-green-200 bg-green-50 p-4'>
+                        <div className="rounded-lg border border-green-200 bg-green-50 p-4">
                             <div className="flex items-center gap-2 text-green-800">
                                 <ShoppingCart className="h-5 w-5" />
                                 <span className="font-medium">Producto en el carrito</span>
                             </div>
-                            <p className='mt-1 text-green-700 text-sm'>
+                            <p className="mt-1 text-green-700 text-sm">
                                 {productCart.quantity} unidad
                                 {productCart.quantity !== 1 ? 'es' : ''} agregada
                                 {productCart.quantity !== 1 ? 's' : ''}
@@ -135,9 +135,9 @@ export function ProductActions({ product, productCart }: ProductActionsProps) {
                     <Button
                         onClick={handleAddToCart}
                         size="lg"
-                        className='w-full bg-blue-600 py-4 font-medium text-lg text-white hover:bg-blue-700'
+                        className="w-full py-4 font-medium text-lg"
                     >
-                        <ShoppingCart className='mr-2 h-5 w-5' />
+                        <ShoppingCart className="mr-2 h-5 w-5" />
                         Agregar al carrito
                     </Button>
                 )}
@@ -148,7 +148,7 @@ export function ProductActions({ product, productCart }: ProductActionsProps) {
                 <Button
                     variant="outline"
                     onClick={handleWishlist}
-                    className='flex flex-1 items-center justify-center gap-2'
+                    className="flex flex-1 items-center justify-center gap-2"
                 >
                     <Heart className="h-4 w-4" />
                     Lista de deseos
@@ -156,7 +156,7 @@ export function ProductActions({ product, productCart }: ProductActionsProps) {
                 <Button
                     variant="outline"
                     onClick={handleShare}
-                    className='flex flex-1 items-center justify-center gap-2'
+                    className="flex flex-1 items-center justify-center gap-2"
                 >
                     <Share2 className="h-4 w-4" />
                     Compartir
@@ -164,26 +164,28 @@ export function ProductActions({ product, productCart }: ProductActionsProps) {
             </div>
 
             {/* Product Features */}
-            <div className="border-t pt-6">
-                <h3 className='mb-4 font-semibold text-gray-900 text-lg'>
+            <div className="border-border border-t pt-6">
+                <h3 className="mb-4 font-semibold text-foreground text-lg">
                     Información del producto
                 </h3>
                 <div className="space-y-3">
                     <div className="flex items-center gap-3 text-sm">
-                        <div className='h-2 w-2 rounded-full bg-green-500' />
-                        <span className="text-gray-700">Envío gratis a todo el país</span>
+                        <div className="h-2 w-2 rounded-full bg-green-500" />
+                        <span className="text-muted-foreground">
+                            Envío gratis a todo el país
+                        </span>
                     </div>
                     <div className="flex items-center gap-3 text-sm">
-                        <div className='h-2 w-2 rounded-full bg-green-500' />
-                        <span className="text-gray-700">Garantía de 30 días</span>
+                        <div className="h-2 w-2 rounded-full bg-green-500" />
+                        <span className="text-muted-foreground">Garantía de 30 días</span>
                     </div>
                     <div className="flex items-center gap-3 text-sm">
-                        <div className='h-2 w-2 rounded-full bg-green-500' />
-                        <span className="text-gray-700">Pago seguro</span>
+                        <div className="h-2 w-2 rounded-full bg-green-500" />
+                        <span className="text-muted-foreground">Pago seguro</span>
                     </div>
                     <div className="flex items-center gap-3 text-sm">
-                        <div className='h-2 w-2 rounded-full bg-blue-500' />
-                        <span className="text-gray-700">Soporte 24/7</span>
+                        <div className="h-2 w-2 rounded-full bg-blue-500" />
+                        <span className="text-muted-foreground">Soporte 24/7</span>
                     </div>
                 </div>
             </div>
