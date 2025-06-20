@@ -22,6 +22,28 @@ export interface Cart {
   totalPrice: number;
 }
 
+// Zustand Cart Store Types
+export interface CartState {
+  items: CartItem[];
+  totalItems: number;
+  totalPrice: number;
+}
+
+export interface CartActions {
+  addItem: (product: Product, quantity?: number) => void;
+  removeItem: (productId: number) => void;
+  updateQuantity: (productId: number, quantity: number) => void;
+  increaseQuantity: (productId: number) => void;
+  decreaseQuantity: (productId: number) => void;
+  clearCart: () => void;
+  getTotalItems: () => number;
+  getTotalPrice: () => number;
+  getItemById: (productId: number) => CartItem | undefined;
+  getItemQuantity: (productId: number) => number;
+}
+
+export type CartStore = CartState & CartActions;
+
 export type ProductCategory =
   | "men's clothing"
   | "women's clothing"
