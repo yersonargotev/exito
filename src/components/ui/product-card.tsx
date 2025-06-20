@@ -43,7 +43,10 @@ export function ProductCard({ product, className }: ProductCardProps) {
             )}
         >
             {/* Imagen del producto */}
-            <div className='relative mb-4 aspect-square overflow-hidden rounded-md bg-muted'>
+            <Link
+                href={`/product/${product.id}`}
+                className="relative mb-4 block aspect-square overflow-hidden rounded-md bg-muted"
+            >
                 <Image
                     src={product.image}
                     alt={product.title}
@@ -51,13 +54,13 @@ export function ProductCard({ product, className }: ProductCardProps) {
                     className="object-contain transition-transform group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-            </div>
+            </Link>
 
             {/* Información del producto */}
             <div className="space-y-2">
                 {/* Categoría */}
                 <div className="flex items-center justify-between">
-                    <span className='rounded-full bg-primary/10 px-2 py-1 font-medium text-primary text-xs'>
+                    <span className="rounded-full bg-primary/10 px-2 py-1 font-medium text-primary text-xs">
                         {product.category}
                     </span>
                     {/* Rating */}
@@ -70,9 +73,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
                 </div>
 
                 {/* Título */}
-                <h3 className='line-clamp-2 font-medium leading-tight'>
-                    {product.title}
-                </h3>
+                <Link href={`/product/${product.id}`}>
+                    <h3 className='line-clamp-2 cursor-pointer font-medium leading-tight transition-colors hover:text-primary'>
+                        {product.title}
+                    </h3>
+                </Link>
 
                 {/* Precio */}
                 <div className="flex items-center justify-between">
@@ -85,7 +90,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
                         <button
                             type="button"
                             onClick={handleAddToCart}
-                            className='flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary/90'
+                            className="flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
                         >
                             <ShoppingCart className="h-4 w-4" />
                             Agregar al carrito
@@ -100,7 +105,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
                                 >
                                     <Minus className="h-3 w-3" />
                                 </button>
-                                <span className='min-w-[2rem] text-center font-medium text-sm'>
+                                <span className="min-w-[2rem] text-center font-medium text-sm">
                                     {quantity}
                                 </span>
                                 <button
@@ -111,7 +116,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
                                     <Plus className="h-3 w-3" />
                                 </button>
                             </div>
-                            <span className='font-medium text-muted-foreground text-sm'>
+                            <span className="font-medium text-muted-foreground text-sm">
                                 En carrito
                             </span>
                         </div>
