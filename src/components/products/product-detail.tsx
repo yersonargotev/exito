@@ -25,8 +25,19 @@ export function ProductDetail({ productId }: ProductDetailProps) {
         refetch,
     } = useProduct(productId);
 
-    // Solo usar productCart si el producto existe
-    const productCart = product ? useProductCart(product) : null;
+    // Create a placeholder product to avoid conditional hook usage
+    const dummyProduct = {
+        id: productId,
+        title: '',
+        price: 0,
+        description: '',
+        category: '',
+        image: '',
+        rating: { rate: 0, count: 0 }
+    };
+
+    // Always call useProductCart to maintain hook order
+    const productCart = useProductCart(product || dummyProduct);
 
     // Estado de carga
     if (isLoading) {
@@ -93,7 +104,7 @@ export function ProductDetail({ productId }: ProductDetailProps) {
                 {/* Product Information and Actions */}
                 <div className="space-y-6">
                     <ProductInfo product={product} />
-                    {productCart && <ProductActions product={product} productCart={productCart} />}
+                    {product && <ProductActions product={product} productCart={productCart} />}
                 </div>
             </div>
 
