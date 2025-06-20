@@ -111,3 +111,19 @@ export interface PaginatedResponse<T> {
     hasPrev: boolean;
   };
 }
+
+// Tipos específicos para la API de productos con infinite scroll
+export interface PaginatedProductsResponse {
+  data: Product[];
+  nextCursor?: number;
+  hasNextPage: boolean;
+  totalCount: number;
+}
+
+// Parámetros para la paginación de productos
+export interface ProductsPaginationParams {
+  pageParam?: number;
+  limit?: number;
+  category?: ProductCategory;
+  search?: string;
+}

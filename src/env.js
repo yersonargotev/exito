@@ -8,8 +8,6 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z.enum(['development', 'test', 'production']),
-    // Variable opcional para controlar el uso de datos locales
-    USE_LOCAL_DATA: z.string().optional(),
   },
 
   /**
@@ -18,7 +16,8 @@ export const env = createEnv({
    * `NEXT_PUBLIC_`.
    */
   client: {
-    // NEXT_PUBLIC_CLIENTVAR: z.string(),
+    // Variable para controlar el uso de datos locales (disponible en cliente)
+    NEXT_PUBLIC_USE_LOCAL_DATA: z.string().optional(),
   },
 
   /**
@@ -27,8 +26,7 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-    USE_LOCAL_DATA: process.env.USE_LOCAL_DATA,
-    // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+    NEXT_PUBLIC_USE_LOCAL_DATA: process.env.NEXT_PUBLIC_USE_LOCAL_DATA,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
