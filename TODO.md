@@ -49,20 +49,28 @@ Desarrollar una aplicación de e-commerce con React/Next.js que incluya lista de
 - [x] Implementar partialize para persistir solo estado necesario
 - [x] Crear hooks optimizados para diferentes casos de uso
 
-## 🌐 Servicios API
+## ✅ Servicios API
 
 ### Cliente API
-- [ ] Crear servicio para consumir FakeStore API
-  - [ ] Función para obtener todos los productos
-  - [ ] Función para obtener producto por ID
-  - [ ] Función para obtener categorías
-  - [ ] Función para buscar productos
-- [ ] Configurar TanStack Query hooks
-  - [ ] Hook para lista de productos
-  - [ ] Hook para detalle de producto
-  - [ ] Hook para búsqueda
-- [ ] Crear tipos TypeScript para los datos de la API
-- [ ] Manejo de estados de carga y error
+- [x] Crear servicio para consumir FakeStore API
+  - [x] Función para obtener todos los productos
+  - [x] Función para obtener producto por ID
+  - [x] Función para obtener categorías
+  - [x] Función para buscar productos
+- [x] Configurar TanStack Query hooks
+  - [x] Hook para lista de productos
+  - [x] Hook para detalle de producto
+  - [x] Hook para búsqueda
+  - [x] Hook para categorías
+  - [x] Hook para productos por categoría
+  - [x] Hooks compuestos para casos de uso complejos
+  - [x] Hook para filtrado avanzado de productos
+- [x] Crear tipos TypeScript para los datos de la API
+- [x] Manejo de estados de carga y error
+  - [x] Configuración de retry con backoff exponencial
+  - [x] Manejo centralizado de errores
+  - [x] Estados de carga optimizados
+  - [x] Validación y transformación de datos
 
 ## 📄 Páginas Principales
 

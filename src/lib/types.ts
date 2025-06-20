@@ -61,3 +61,53 @@ export interface SearchParams {
   limit?: number;
   sort?: 'asc' | 'desc';
 }
+
+// API Error Types
+export interface ApiError {
+  message: string;
+  status?: number;
+  code?: string;
+}
+
+// Query State Types for better typing with TanStack Query
+export interface QueryState<T> {
+  data: T | undefined;
+  isLoading: boolean;
+  isError: boolean;
+  error: ApiError | null;
+  isSuccess: boolean;
+  refetch: () => void;
+}
+
+// Filter types for product filtering
+export interface ProductFilters {
+  category?: ProductCategory;
+  search?: string;
+  priceRange?: {
+    min?: number;
+    max?: number;
+  };
+  rating?: {
+    min?: number;
+  };
+  sortBy?: 'price' | 'rating' | 'title';
+  sortOrder?: 'asc' | 'desc';
+}
+
+// Pagination types for future use
+export interface PaginationParams {
+  page: number;
+  limit: number;
+}
+
+export interface PaginatedResponse<T> {
+  data: T[];
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+    hasNext: boolean;
+    hasPrev: boolean;
+  };
+}
