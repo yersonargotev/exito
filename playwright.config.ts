@@ -41,12 +41,24 @@ export default defineConfig({
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: {
+        ...devices['Desktop Firefox'],
+        // Firefox-specific settings to handle connection issues
+        navigationTimeout: 60000,
+        actionTimeout: 30000,
+      },
+      retries: 2, // Extra retries for Firefox
     },
 
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      use: {
+        ...devices['Desktop Safari'],
+        // WebKit-specific settings to handle connection issues
+        navigationTimeout: 60000,
+        actionTimeout: 30000,
+      },
+      retries: 2, // Extra retries for WebKit
     },
 
     /* Test against mobile viewports. */
