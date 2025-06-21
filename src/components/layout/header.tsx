@@ -179,13 +179,6 @@ export function Header() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
-                <Link href="/ofertas" className={navigationMenuTriggerStyle()}>
-                  Ofertas
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
                 <Link href="/nosotros" className={navigationMenuTriggerStyle()}>
                   Nosotros
                 </Link>
@@ -331,9 +324,6 @@ export function Header() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <Link href="/ofertas" className="block py-2 font-medium text-sm">
-              Ofertas
-            </Link>
             <Link href="/nosotros" className="block py-2 font-medium text-sm">
               Nosotros
             </Link>

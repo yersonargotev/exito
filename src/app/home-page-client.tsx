@@ -100,22 +100,6 @@ export default function HomePageClient() {
           >
             Ver Productos
           </button>
-          <button
-            type="button"
-            onClick={() => {
-              // Clear current filters and show all products
-              clearAllFilters();
-              // Scroll to products section
-              setTimeout(() => {
-                const productsSection =
-                  document.getElementById('products-section');
-                productsSection?.scrollIntoView({ behavior: 'smooth' });
-              }, 100);
-            }}
-            className="rounded-lg border border-border px-6 py-2 font-semibold text-sm transition-colors hover:bg-muted sm:px-8 sm:py-3 sm:text-base"
-          >
-            Ofertas Especiales
-          </button>
         </div>
       </section>
 
