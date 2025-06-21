@@ -132,7 +132,10 @@ describe('Reviews Hooks', () => {
         await result.current.mutateAsync(newReview);
       });
 
-      expect(result.current.isSuccess).toBe(true);
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBe(true);
+      });
+
       expect(result.current.data).toMatchObject({
         productId: 1,
         userName: 'New User',
