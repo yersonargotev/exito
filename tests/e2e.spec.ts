@@ -134,19 +134,15 @@ test.describe('E-commerce Application', () => {
     // Click checkout button
     await page.locator('[data-testid="checkout-button"]').click();
 
-    // Wait a bit for navigation
-    await page.waitForTimeout(3000);
+    // Wait for navigation to the checkout page, which is a best practice
+    // instead of using a fixed timeout.
+    await page.waitForURL('**/checkout');
 
-    // Check if we're on the checkout page OR if the checkout form is displayed
-    const currentUrl = page.url();
-    const isOnCheckoutPage = currentUrl.includes('/checkout');
-    const hasCheckoutForm = await page
-      .locator('[data-testid="checkout-form"]')
-      .isVisible()
-      .catch(() => false);
+    // Check if we're on the checkout page
+    await expect(page).toHaveURL(/.*\/checkout/);
 
-    // At least one of these should be true
-    expect(isOnCheckoutPage || hasCheckoutForm).toBe(true);
+    // Now we can also check if the form is visible
+    await expect(page.locator('[data-testid="checkout-form"]')).toBeVisible();
   });
 
   test('should allow searching for products', async ({ page }) => {
