@@ -38,6 +38,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
   return (
     <div
+      data-testid="product-card"
       className={cn(
         'group relative rounded-lg border border-border bg-card p-3 transition-all hover:shadow-lg sm:p-4',
         className,
@@ -51,8 +52,9 @@ export function ProductCard({ product, className }: ProductCardProps) {
         <Image
           src={product.image}
           alt={product.title}
-          fill
-          className="object-contain transition-transform group-hover:scale-105"
+          width={300}
+          height={300}
+          className="h-full w-full object-contain transition-transform group-hover:scale-105"
           sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
         />
       </Link>
@@ -82,7 +84,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
         {/* Precio */}
         <div className="flex items-center justify-between">
-          <span className="font-bold text-base sm:text-lg">
+          <span data-testid="product-price" className="font-bold text-base sm:text-lg">
             ${product.price.toFixed(2)}
           </span>
         </div>
@@ -92,6 +94,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
           {!isInCart ? (
             <button
               type="button"
+              data-testid="add-to-cart-button"
               onClick={handleAddToCart}
               className="flex w-full items-center justify-center gap-2 rounded-md bg-primary px-3 py-2 font-medium text-primary-foreground text-xs transition-colors hover:bg-primary/90 sm:px-4 sm:text-sm"
             >

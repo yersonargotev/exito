@@ -234,14 +234,13 @@ export function Header() {
           <Button variant="ghost" size="icon" asChild className="relative">
             <Link href="/cart">
               <ShoppingCart className="h-5 w-5" />
-              {totalItems > 0 && (
-                <Badge
-                  variant="destructive"
-                  className="-top-2 -right-2 absolute flex h-5 w-5 items-center justify-center rounded-full p-0 text-xs"
-                >
-                  {totalItems > 99 ? '99+' : totalItems}
-                </Badge>
-              )}
+              <Badge
+                data-testid="cart-badge"
+                variant={totalItems > 0 ? "destructive" : "secondary"}
+                className="-top-2 -right-2 absolute flex h-5 w-5 items-center justify-center rounded-full p-0 text-xs"
+              >
+                {totalItems > 99 ? '99+' : totalItems}
+              </Badge>
               <span className="sr-only">
                 Carrito de compras ({totalItems}{' '}
                 {totalItems === 1 ? 'artículo' : 'artículos'})
