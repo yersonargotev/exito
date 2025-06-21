@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import type { CartItem } from '@/lib/types';
 import { Trash2 } from 'lucide-react';
 import Image from 'next/image';
+import { memo } from 'react';
 import { toast } from 'sonner';
 import { QuantityControls } from './quantity-controls';
 
@@ -13,7 +14,7 @@ interface CartItemProps {
   onDecreaseQuantity: (productId: number) => void;
 }
 
-export function CartItemComponent({
+export const CartItemComponent = memo(function CartItemComponent({
   item,
   onUpdateQuantity,
   onRemoveItem,
@@ -116,4 +117,4 @@ export function CartItemComponent({
       </div>
     </div>
   );
-}
+});

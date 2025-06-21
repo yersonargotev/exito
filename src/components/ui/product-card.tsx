@@ -4,13 +4,14 @@ import { cn } from '@/lib/utils';
 import { Minus, Plus, ShoppingCart, Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { memo } from 'react';
 
 interface ProductCardProps {
   product: Product;
   className?: string;
 }
 
-export function ProductCard({ product, className }: ProductCardProps) {
+export const ProductCard = memo(function ProductCard({ product, className }: ProductCardProps) {
   const {
     quantity,
     isInCart,
@@ -136,4 +137,4 @@ export function ProductCard({ product, className }: ProductCardProps) {
       </div>
     </div>
   );
-}
+});

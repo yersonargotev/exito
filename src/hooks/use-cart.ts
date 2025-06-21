@@ -1,6 +1,6 @@
 import type { CartItem, Product } from '@/lib/types';
 import { useCartStore } from '@/store/cart-store';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 
 /**
@@ -101,45 +101,43 @@ export const useProductCart = (product: Product) => {
   const quantity = useCartItemQuantity(product.id);
   const isInCart = quantity > 0;
 
-  const addToCart = (qty = 1) => {
-    if (isHydrated) {
-      actions.addItem(product, qty);
-    }
-  };
-
-  const removeFromCart = () => {
-    if (isHydrated) {
-      actions.removeItem(product.id);
-    }
-  };
-
-  const updateQuantity = (qty: number) => {
-    if (isHydrated) {
-      actions.updateQuantity(product.id, qty);
-    }
-  };
-
-  const increaseQuantity = () => {
-    if (isHydrated) {
-      actions.increaseQuantity(product.id);
-    }
-  };
-
-  const decreaseQuantity = () => {
-    if (isHydrated) {
-      actions.decreaseQuantity(product.id);
-    }
-  };
+  // Memoize cart actions to prevent unnecessary re-renders
+  const cartActions = useMemo(
+    () => ({
+      addToCart: (qty = 1) => {
+        if (isHydrated) {
+          actions.addItem(product, qty);
+        }
+      },
+      removeFromCart: () => {
+        if (isHydrated) {
+          actions.removeItem(product.id);
+        }
+      },
+      updateQuantity: (qty: number) => {
+        if (isHydrated) {
+          actions.updateQuantity(product.id, qty);
+        }
+      },
+      increaseQuantity: () => {
+        if (isHydrated) {
+          actions.increaseQuantity(product.id);
+        }
+      },
+      decreaseQuantity: () => {
+        if (isHydrated) {
+          actions.decreaseQuantity(product.id);
+        }
+      },
+    }),
+    [isHydrated, actions, product],
+  );
 
   return {
     quantity,
     isInCart,
     isHydrated,
-    addToCart,
-    removeFromCart,
-    updateQuantity,
-    increaseQuantity,
-    decreaseQuantity,
+    ...cartActions,
   };
 };
 
@@ -152,13 +150,21 @@ export const useCart = () => {
   const totals = useCartTotals();
   const actions = useCartActions();
 
-  const isEmpty = items.length === 0;
+  // Memoize computed values
+  const cartData = useMemo(
+    () => ({
+      isEmpty: items.length === 0,
+      itemCount: items.length,
+      hasItems: items.length > 0,
+    }),
+    [items.length],
+  );
 
   return {
     ...totals,
     items,
-    isEmpty,
     isHydrated,
+    ...cartData,
     ...actions,
   };
 };

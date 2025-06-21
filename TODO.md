@@ -218,11 +218,34 @@ Desarrollar una aplicación de e-commerce con React/Next.js que incluya lista de
   - [x] **CI-ready** configuración
 
 ## 🚀 Optimizaciones y Performance
-- [ ] Optimización de imágenes (Next.js Image)
-- [ ] Lazy loading de componentes
-- [ ] Memoización donde sea necesario
-- [ ] SEO básico (meta tags, títulos)
-- [ ] Lighthouse audit y optimizaciones
+- [x] Optimización de imágenes (Next.js Image)
+  - [x] Implementado en ProductCard, CartItem, OrderSummary
+  - [x] Configurado con sizes responsivos
+  - [x] Formatos modernos (WebP, AVIF) habilitados
+  - [x] Lazy loading nativo de Next.js
+- [x] Lazy loading de componentes
+  - [x] Componentes pesados con next/dynamic
+  - [x] Loading states personalizados con skeletons
+  - [x] SSR deshabilitado para componentes interactivos
+  - [x] Suspense boundaries implementados
+- [x] Memoización donde sea necesario
+  - [x] React.memo en ProductCard y CartItem
+  - [x] useMemo en hooks para cálculos costosos
+  - [x] useCallback para funciones estables
+  - [x] Zustand shallow comparison optimizado
+- [x] SEO básico (meta tags, títulos)
+  - [x] Metadata dinámica en páginas de producto
+  - [x] Layout principal con metadata completa
+  - [x] Open Graph y Twitter cards
+  - [x] Metadata específica para carrito y checkout
+  - [x] Robots.txt y configuración SEO avanzada
+- [x] Lighthouse audit y optimizaciones
+  - [x] Script de audit personalizado creado
+  - [x] Configuración Next.js optimizada
+  - [x] Bundle splitting configurado
+  - [x] Security headers implementados
+  - [x] Compresión gzip habilitada
+  - [x] Performance metrics tracking
 
 ## 📋 Validaciones Finales
 - [ ] Verificar todos los requisitos funcionales
