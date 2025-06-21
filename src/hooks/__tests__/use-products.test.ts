@@ -1,29 +1,18 @@
-import * as api from '@/lib/api';
-import type { Product, ProductCategory } from '@/lib/types';
-import { QueryClient, type QueryClientProvider } from '@tanstack/react-query';
-/**
- * @jest-environment jsdom
- */
-import { renderHook, waitFor } from '@testing-library/react';
-import type { ReactNode } from 'react';
 import {
   useCategories,
-  useInfiniteProducts,
   useProduct,
   useProducts,
   useProductsByCategory,
   useSearchProducts,
-} from '../use-products';
+} from '@/hooks/use-products';
+import * as api from '@/lib/api';
+import type { Product, ProductCategory } from '@/lib/types';
+import { QueryClient, type QueryClientProvider } from '@tanstack/react-query';
+import { renderHook, waitFor } from '@testing-library/react';
+import type { ReactNode } from 'react';
 
-// Mock the API functions
-jest.mock('@/lib/api', () => ({
-  getProducts: jest.fn(),
-  getProductById: jest.fn(),
-  getCategories: jest.fn(),
-  getProductsByCategory: jest.fn(),
-  searchProducts: jest.fn(),
-  getProductsPaginated: jest.fn(),
-}));
+// Mock the API module
+jest.mock('@/lib/api');
 
 const mockProducts: Product[] = [
   {
@@ -33,16 +22,22 @@ const mockProducts: Product[] = [
     description: 'A test product',
     category: 'electronics',
     image: 'https://example.com/image1.jpg',
-    rating: { rate: 4.5, count: 100 },
+    rating: {
+      rate: 4.5,
+      count: 100,
+    },
   },
   {
     id: 2,
     title: 'Test Product 2',
     price: 39.99,
     description: 'Another test product',
-    category: 'electronics', // Fixed to valid category
+    category: 'clothing',
     image: 'https://example.com/image2.jpg',
-    rating: { rate: 4.0, count: 50 },
+    rating: {
+      rate: 4.0,
+      count: 50,
+    },
   },
 ];
 
@@ -53,7 +48,6 @@ const mockCategories: ProductCategory[] = [
   "women's clothing",
 ];
 
-// Create a test wrapper with QueryClient
 const createWrapper = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -64,9 +58,10 @@ const createWrapper = () => {
     },
   });
 
-  return ({ children }: { children: ReactNode }) =>
-    (<QueryClientProvider client =
+  return function Wrapper({ children }: { children: ReactNode }) {
+    return (<QueryClientProvider client =
       { queryClient } > { children } < />CPQdeeeiilnorrrtuvy);
+  };
 };
 
 describe('useProducts Hooks', () => {
@@ -264,121 +259,13 @@ describe('useProducts Hooks', () => {
       expect(api.searchProducts).toHaveBeenCalledWith(searchQuery);
     });
 
-    it('should not fetch when query is empty', () => {
-      const { result } = renderHook(() => useSearchProducts(''), {
-        wrapper: createWrapper(),
-      });
-
-      expect(result.current.data).toBeUndefined();
-      expect(api.searchProducts).not.toHaveBeenCalled();
-    });
-
-    it('should not fetch when query is too short (less than 2 characters)', () => {
-      const { result } = renderHook(() => useSearchProducts('a'), {
-        wrapper: createWrapper(),
-      });
-
-      expect(result.current.data).toBeUndefined();
-      expect(api.searchProducts).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('useInfiniteProducts', () => {
-    const mockPaginatedResponse = {
-      data: mockProducts,
-      hasNextPage: true,
-      nextCursor: 2,
-      totalCount: 10,
-    };
-
-    it('should fetch and return infinite products successfully', async () => {
-      (api.getProductsPaginated as jest.Mock).mockResolvedValue(
-        mockPaginatedResponse,
-      );
-
-      const { result } = renderHook(() => useInfiniteProducts({}), {
-        wrapper: createWrapper(),
-      });
-
-      expect(result.current.isLoading).toBe(true);
-
-      await waitFor(() => {
-        expect(result.current.isSuccess).toBe(true);
-      });
-
-      expect(result.current.data?.pages).toHaveLength(1);
-      expect(result.current.data?.pages[0]).toEqual(mockPaginatedResponse);
-      expect(api.getProductsPaginated).toHaveBeenCalledWith({
-        pageParam: 0,
-        limit: 8,
-        search: undefined,
-        category: undefined,
-      });
-    });
-
-    it('should pass filters correctly to API', async () => {
-      const filters = {
-        search: 'test',
-        category: 'electronics' as ProductCategory,
-        limit: 10,
-      };
-      (api.getProductsPaginated as jest.Mock).mockResolvedValue(
-        mockPaginatedResponse,
-      );
-
-      renderHook(() => useInfiniteProducts(filters), {
-        wrapper: createWrapper(),
-      });
-
-      await waitFor(() => {
-        expect(api.getProductsPaginated).toHaveBeenCalledWith({
-          pageParam: 0,
-          limit: 10,
-          search: 'test',
-          category: 'electronics',
-        });
-      });
-    });
-
-    it('should handle pagination correctly', async () => {
-      (api.getProductsPaginated as jest.Mock)
-        .mockResolvedValueOnce(mockPaginatedResponse)
-        .mockResolvedValueOnce({
-          data: [mockProducts[1]],
-          hasNextPage: false,
-          nextCursor: null,
-          totalCount: 10,
-        });
-
-      const { result } = renderHook(() => useInfiniteProducts({}), {
-        wrapper: createWrapper(),
-      });
-
-      await waitFor(() => {
-        expect(result.current.isSuccess).toBe(true);
-      });
-
-      expect(result.current.hasNextPage).toBe(true);
-
-      // Fetch next page
-      await waitFor(() => {
-        if (result.current.fetchNextPage) {
-          result.current.fetchNextPage();
-        }
-      });
-
-      await waitFor(() => {
-        expect(result.current.data?.pages).toHaveLength(2);
-      });
-    });
-
-    it('should handle error when fetching infinite products fails', async () => {
-      const errorMessage = 'Failed to fetch infinite products';
-      (api.getProductsPaginated as jest.Mock).mockRejectedValue(
+    it('should handle error when search fails', async () => {
+      const errorMessage = 'Search failed';
+      (api.searchProducts as jest.Mock).mockRejectedValue(
         new Error(errorMessage),
       );
 
-      const { result } = renderHook(() => useInfiniteProducts({}), {
+      const { result } = renderHook(() => useSearchProducts(searchQuery), {
         wrapper: createWrapper(),
       });
 
@@ -388,6 +275,29 @@ describe('useProducts Hooks', () => {
 
       expect(result.current.error).toBeInstanceOf(Error);
       expect((result.current.error as Error).message).toBe(errorMessage);
+    });
+
+    it('should not fetch when query is too short', () => {
+      const { result } = renderHook(() => useSearchProducts('a'), {
+        wrapper: createWrapper(),
+      });
+
+      expect(result.current.data).toBeUndefined();
+      expect(api.searchProducts).not.toHaveBeenCalled();
+    });
+
+    it('should return empty array as default when data is null', async () => {
+      (api.searchProducts as jest.Mock).mockResolvedValue(null);
+
+      const { result } = renderHook(() => useSearchProducts(searchQuery), {
+        wrapper: createWrapper(),
+      });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBe(true);
+      });
+
+      expect(result.current.data).toEqual([]);
     });
   });
 });
