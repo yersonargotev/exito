@@ -9,10 +9,10 @@ import { useEffect } from 'react';
  * Must be used in a client component to prevent SSR mismatches
  */
 export function CartHydration() {
-    useEffect(() => {
-        // Manually trigger hydration on the client side
-        useCartStore.persist.rehydrate();
-    }, []);
+  useEffect(() => {
+    // Manually trigger hydration on the client side
+    useCartStore.persist.rehydrate();
+  }, []);
 
-    return null;
-} 
+  return null;
+}

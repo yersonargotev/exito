@@ -13,21 +13,21 @@ export function ProductImage({ product }: ProductImageProps) {
 
   if (imageError) {
     return (
-      <div className="flex aspect-square items-center justify-center rounded-lg bg-gray-100">
-        <div className="text-center text-gray-400">
-          <ImageIcon className="mx-auto mb-2 h-16 w-16" />
-          <p>Imagen no disponible</p>
+      <div className="flex aspect-square items-center justify-center rounded-lg bg-muted">
+        <div className="text-center text-muted-foreground">
+          <ImageIcon className="mx-auto mb-2 h-12 w-12 sm:h-16 sm:w-16" />
+          <p className="text-sm sm:text-base">Imagen no disponible</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="relative aspect-square overflow-hidden rounded-lg border border-gray-200 bg-white">
+    <div className="relative aspect-square overflow-hidden rounded-lg border border-border bg-background">
       {imageLoading && (
-        <div className="absolute inset-0 flex animate-pulse items-center justify-center bg-gray-100">
-          <div className="text-gray-400">
-            <ImageIcon className="h-16 w-16" />
+        <div className="absolute inset-0 flex animate-pulse items-center justify-center bg-muted">
+          <div className="text-muted-foreground">
+            <ImageIcon className="h-12 w-12 sm:h-16 sm:w-16" />
           </div>
         </div>
       )}
@@ -36,10 +36,9 @@ export function ProductImage({ product }: ProductImageProps) {
         src={product.image}
         alt={product.title}
         fill
-        className={`object-contain p-4 transition-opacity duration-300 ${
-          imageLoading ? 'opacity-0' : 'opacity-100'
-        }`}
-        sizes="(max-width: 768px) 100vw, 50vw"
+        className={`object-contain p-3 transition-opacity duration-300 sm:p-4 ${imageLoading ? 'opacity-0' : 'opacity-100'
+          }`}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
         priority
         onLoad={() => setImageLoading(false)}
         onError={() => {

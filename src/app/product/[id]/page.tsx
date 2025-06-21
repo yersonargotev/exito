@@ -42,22 +42,22 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
 function ProductDetailSkeleton() {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-4 sm:py-8">
       {/* Breadcrumb skeleton */}
-      <div className="mb-6">
-        <div className="h-4 w-64 animate-pulse rounded bg-muted" />
+      <div className="mb-4 sm:mb-6">
+        <div className="h-4 w-48 animate-pulse rounded bg-muted sm:w-64" />
       </div>
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
         {/* Image skeleton */}
         <div className="aspect-square animate-pulse rounded-lg bg-muted" />
 
         {/* Product info skeleton */}
-        <div className="space-y-6">
-          <div className="space-y-4">
-            <div className="h-8 w-3/4 animate-pulse rounded bg-muted" />
-            <div className="h-6 w-32 animate-pulse rounded bg-muted" />
-            <div className="h-10 w-24 animate-pulse rounded bg-muted" />
+        <div className="space-y-4 sm:space-y-6">
+          <div className="space-y-3 sm:space-y-4">
+            <div className="h-6 w-2/3 animate-pulse rounded bg-muted sm:h-8" />
+            <div className="h-5 w-32 animate-pulse rounded bg-muted sm:h-6" />
+            <div className="h-8 w-24 animate-pulse rounded bg-muted sm:h-10" />
           </div>
 
           <div className="space-y-2">
@@ -66,9 +66,9 @@ function ProductDetailSkeleton() {
             <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
           </div>
 
-          <div className="space-y-4">
-            <div className="h-12 animate-pulse rounded bg-muted" />
-            <div className="h-10 animate-pulse rounded bg-muted" />
+          <div className="space-y-3 sm:space-y-4">
+            <div className="h-10 animate-pulse rounded bg-muted sm:h-12" />
+            <div className="h-8 animate-pulse rounded bg-muted sm:h-10" />
           </div>
         </div>
       </div>

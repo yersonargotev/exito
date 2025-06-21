@@ -80,12 +80,12 @@ export function ProductDetail({ productId }: ProductDetailProps) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-4 sm:py-8">
       {/* Breadcrumb */}
       <ProductBreadcrumb product={product} />
 
       {/* Back button */}
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
         <Button
           variant="ghost"
           onClick={() => router.back()}
@@ -97,7 +97,7 @@ export function ProductDetail({ productId }: ProductDetailProps) {
       </div>
 
       {/* Main content */}
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8 xl:gap-12">
         {/* Product Image */}
         <ProductImage product={product} />
 

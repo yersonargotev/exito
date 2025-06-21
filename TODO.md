@@ -186,10 +186,10 @@ Desarrollar una aplicación de e-commerce con React/Next.js que incluya lista de
   - [x] **Resumen dinámico** del pedido en tiempo real
 
 ## 📱 Responsive Design
-- [ ] Asegurar que todas las páginas sean responsive
-- [ ] Probar en dispositivos móviles, tablets y desktop
-- [ ] Optimizar imágenes para diferentes tamaños de pantalla
-- [ ] Menú hamburguesa para móviles
+- [x] Asegurar que todas las páginas sean responsive
+- [x] Probar en dispositivos móviles, tablets y desktop
+- [x] Optimizar imágenes para diferentes tamaños de pantalla
+- [x] Menú hamburguesa para móviles
 
 ## 🧪 Testing
 - [ ] Configurar testing framework (Jest + Testing Library)

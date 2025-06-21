@@ -20,17 +20,17 @@ export default function HomePage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-4 sm:py-8">
       {/* Hero Section */}
-      <section className='relative mb-12 rounded-lg bg-gradient-to-r from-primary/10 to-secondary/10 p-8 text-center md:p-16'>
-        <h1 className="mb-4 font-bold text-4xl tracking-tight md:text-6xl">
+      <section className="relative mb-8 rounded-lg bg-gradient-to-r from-primary/10 to-secondary/10 p-6 text-center sm:mb-12 sm:p-8 md:p-16">
+        <h1 className="mb-4 font-bold text-2xl tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
           Bienvenido a <span className="text-primary">Éxito Store</span>
         </h1>
-        <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">
+        <p className="mx-auto mb-6 max-w-2xl px-2 text-muted-foreground text-sm sm:mb-8 sm:text-base md:text-lg">
           Descubre los mejores productos con la calidad y servicio que te
           mereces. Tu satisfacción es nuestra prioridad.
         </p>
-        <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+        <div className="flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4">
           <button
             type="button"
             onClick={() => {
@@ -39,7 +39,7 @@ export default function HomePage() {
                 document.getElementById('products-section');
               productsSection?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className='rounded-lg bg-primary px-8 py-3 font-semibold text-primary-foreground transition-colors hover:bg-primary/90'
+            className="rounded-lg bg-primary px-6 py-2 font-semibold text-primary-foreground text-sm transition-colors hover:bg-primary/90 sm:px-8 sm:py-3 sm:text-base"
           >
             Ver Productos
           </button>
@@ -51,7 +51,7 @@ export default function HomePage() {
               setCategory(undefined);
               // En una implementación real, podríamos tener un filtro específico para ofertas
             }}
-            className='rounded-lg border border-border px-8 py-3 font-semibold transition-colors hover:bg-muted'
+            className="rounded-lg border border-border px-6 py-2 font-semibold text-sm transition-colors hover:bg-muted sm:px-8 sm:py-3 sm:text-base"
           >
             Ofertas Especiales
           </button>
@@ -59,11 +59,13 @@ export default function HomePage() {
       </section>
 
       {/* Products Section */}
-      <section id="products-section" className="space-y-8">
+      <section id="products-section" className="space-y-6 sm:space-y-8">
         {/* Título de la sección */}
         <div className="text-center">
-          <h2 className="mb-4 font-bold text-3xl">Nuestros Productos</h2>
-          <p className='mx-auto max-w-2xl text-muted-foreground'>
+          <h2 className="mb-4 font-bold text-2xl sm:text-3xl">
+            Nuestros Productos
+          </h2>
+          <p className="mx-auto max-w-2xl px-2 text-muted-foreground text-sm sm:text-base">
             Explora nuestra amplia selección de productos de calidad. Utiliza
             los filtros para encontrar exactamente lo que buscas.
           </p>
@@ -82,41 +84,47 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="mt-24">
-        <h2 className="mb-8 text-center font-bold text-3xl">
+      <section className="mt-16 sm:mt-24">
+        <h2 className="mb-6 text-center font-bold text-2xl sm:mb-8 sm:text-3xl">
           ¿Por qué elegir Éxito Store?
         </h2>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
           <div className="text-center">
             <div className="mb-4 flex justify-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                <span className="text-2xl">🚚</span>
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 sm:h-16 sm:w-16">
+                <span className="text-xl sm:text-2xl">🚚</span>
               </div>
             </div>
-            <h3 className="mb-2 font-semibold">Envío Gratis</h3>
-            <p className="text-muted-foreground text-sm">
+            <h3 className="mb-2 font-semibold text-sm sm:text-base">
+              Envío Gratis
+            </h3>
+            <p className="text-muted-foreground text-xs sm:text-sm">
               Envío gratuito en compras superiores a $100.000
             </p>
           </div>
           <div className="text-center">
             <div className="mb-4 flex justify-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                <span className="text-2xl">🔒</span>
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 sm:h-16 sm:w-16">
+                <span className="text-xl sm:text-2xl">🔒</span>
               </div>
             </div>
-            <h3 className="mb-2 font-semibold">Compra Segura</h3>
-            <p className="text-muted-foreground text-sm">
+            <h3 className="mb-2 font-semibold text-sm sm:text-base">
+              Compra Segura
+            </h3>
+            <p className="text-muted-foreground text-xs sm:text-sm">
               Tus datos y pagos están protegidos con la mejor tecnología
             </p>
           </div>
           <div className="text-center">
             <div className="mb-4 flex justify-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                <span className="text-2xl">🎯</span>
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 sm:h-16 sm:w-16">
+                <span className="text-xl sm:text-2xl">🎯</span>
               </div>
             </div>
-            <h3 className="mb-2 font-semibold">Garantía de Calidad</h3>
-            <p className="text-muted-foreground text-sm">
+            <h3 className="mb-2 font-semibold text-sm sm:text-base">
+              Garantía de Calidad
+            </h3>
+            <p className="text-muted-foreground text-xs sm:text-sm">
               Productos originales con garantía del fabricante
             </p>
           </div>
@@ -124,12 +132,12 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="mt-24 text-center">
-        <div className="rounded-lg bg-primary/5 p-8 md:p-12">
-          <h2 className="mb-4 font-bold text-3xl">
+      <section className="mt-16 text-center sm:mt-24">
+        <div className="rounded-lg bg-primary/5 p-6 sm:p-8 md:p-12">
+          <h2 className="mb-4 font-bold text-2xl sm:text-3xl">
             ¿Listo para empezar a comprar?
           </h2>
-          <p className='mx-auto mb-6 max-w-xl text-muted-foreground'>
+          <p className="mx-auto mb-6 max-w-xl px-2 text-muted-foreground text-sm sm:text-base">
             Únete a miles de clientes satisfechos que ya disfrutan de nuestros
             productos y servicio excepcional.
           </p>
@@ -140,7 +148,7 @@ export default function HomePage() {
                 document.getElementById('products-section');
               productsSection?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className='rounded-lg bg-primary px-8 py-3 font-semibold text-primary-foreground transition-colors hover:bg-primary/90'
+            className="rounded-lg bg-primary px-6 py-2 font-semibold text-primary-foreground text-sm transition-colors hover:bg-primary/90 sm:px-8 sm:py-3 sm:text-base"
           >
             Explorar Productos
           </button>

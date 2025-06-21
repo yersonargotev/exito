@@ -26,20 +26,19 @@ export function ProductInfo({ product }: ProductInfoProps) {
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
       <Star
-        key={`star-${index}`}
-        className={`h-4 w-4 ${
-          index < Math.floor(rating)
+        key={`star-${index}-${rating}`}
+        className={`h-4 w-4 ${index < Math.floor(rating)
             ? 'fill-current text-yellow-400'
             : index < rating
               ? 'fill-current text-yellow-400 opacity-50'
               : 'text-muted-foreground'
-        }`}
+          }`}
       />
     ));
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Category */}
       <div>
         <Badge variant="secondary" className="mb-2">
@@ -49,13 +48,13 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
       {/* Title */}
       <div>
-        <h1 className="font-bold text-3xl text-foreground leading-tight">
+        <h1 className="font-bold text-foreground text-xl leading-tight sm:text-2xl lg:text-3xl">
           {product.title}
         </h1>
       </div>
 
       {/* Rating */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 sm:gap-3">
         <div className="flex items-center gap-1">
           {renderStars(product.rating.rate)}
         </div>
@@ -70,7 +69,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
       {/* Price */}
       <div className="space-y-2">
         <div className="flex items-baseline gap-2">
-          <span className="font-bold text-4xl text-foreground">
+          <span className="font-bold text-2xl text-foreground sm:text-3xl lg:text-4xl">
             {formatPrice(product.price)}
           </span>
           <span className="text-muted-foreground text-sm line-through">
@@ -82,7 +81,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
       {/* Short description */}
       <div className="border-border border-t pt-4">
-        <p className="text-muted-foreground leading-relaxed">
+        <p className="text-muted-foreground text-sm leading-relaxed sm:text-base">
           {product.description.length > 200
             ? `${product.description.substring(0, 200)}...`
             : product.description}
