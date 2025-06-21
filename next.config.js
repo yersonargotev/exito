@@ -3,6 +3,7 @@
  * for Docker builds.
  */
 import './src/env.js';
+import withBundleAnalyzer from '@next/bundle-analyzer';
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -12,12 +13,18 @@ const config = {
       {
         protocol: 'https',
         hostname: 'fakestoreapi.com',
+        port: '',
+        pathname: '/**',
+        search: '',
       },
     ],
-    formats: ['image/avif', 'image/webp'], // Modern image formats
+    formats: ['image/avif', 'image/webp'], // Modern image formats prioritized
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60, // Cache images for 60 seconds
+    minimumCacheTTL: 86400, // Cache images for 24 hours (production-ready)
+    dangerouslyAllowSVG: false, // Security: prevent SVG execution
+    contentDispositionType: 'attachment', // Security: force download for some file types
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 
   // Performance optimizations
@@ -28,7 +35,9 @@ const config = {
   experimental: {
     ppr: true, // Partial Prerendering
     reactCompiler: true, // React Compiler
-    optimizePackageImports: ['lucide-react'], // Tree-shake icon libraries
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'], // Tree-shake icon libraries
+    webVitalsAttribution: ['CLS', 'LCP', 'INP'], // Core Web Vitals attribution
+    scrollRestoration: true, // Improve UX with scroll restoration
   },
 
   // Webpack optimizations
@@ -75,6 +84,18 @@ const config = {
             key: 'Referrer-Policy',
             value: 'origin-when-cross-origin',
           },
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains; preload',
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()',
+          },
         ],
       },
       {
@@ -86,8 +107,30 @@ const config = {
           },
         ],
       },
+      {
+        source: '/_next/image(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable', // Cache optimized images for 1 year
+          },
+        ],
+      },
+      {
+        source: '/_next/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable', // Cache static assets for 1 year
+          },
+        ],
+      },
     ];
   },
 };
 
-export default config;
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+export default bundleAnalyzer(config);

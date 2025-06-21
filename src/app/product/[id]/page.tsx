@@ -1,5 +1,88 @@
 import { ProductDetail } from '@/components/products/product-detail';
+import { getProducts } from '@/lib/api';
+import type { Metadata } from 'next';
 import { Suspense } from 'react';
+
+interface ProductPageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+// Generate metadata for SEO
+export async function generateMetadata({
+  params,
+}: ProductPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const productId = Number.parseInt(id);
+
+  // Validate product ID
+  if (Number.isNaN(productId) || productId <= 0) {
+    return {
+      title: 'Producto no encontrado',
+      description: 'El producto que buscas no existe.',
+    };
+  }
+
+  try {
+    // Fetch product data for metadata
+    const products = await getProducts();
+    const product = products.find((p) => p.id === productId);
+
+    if (!product) {
+      return {
+        title: 'Producto no encontrado',
+        description: 'El producto que buscas no existe.',
+      };
+    }
+
+    return {
+      title: `${product.title} | Exito`,
+      description: `${product.description.substring(0, 160)}...`,
+      keywords: [
+        product.title,
+        product.category,
+        'comprar online',
+        'oferta',
+        'exito',
+        'producto',
+      ],
+      openGraph: {
+        title: product.title,
+        description: product.description,
+        images: [
+          {
+            url: product.image,
+            width: 800,
+            height: 600,
+            alt: product.title,
+          },
+        ],
+        type: 'website',
+      },
+      twitter: {
+        title: product.title,
+        description: product.description,
+        images: [product.image],
+        card: 'summary_large_image',
+      },
+      alternates: {
+        canonical: `/product/${productId}`,
+      },
+      other: {
+        'product:price:amount': product.price.toString(),
+        'product:price:currency': 'USD',
+        'product:category': product.category,
+        'product:availability': 'in stock',
+      },
+    };
+  } catch {
+    return {
+      title: 'Producto no encontrado',
+      description: 'El producto que buscas no existe.',
+    };
+  }
+}
 
 interface ProductPageProps {
   params: Promise<{
@@ -74,30 +157,4 @@ function ProductDetailSkeleton() {
       </div>
     </div>
   );
-}
-
-// Generar metadata dinámica
-export async function generateMetadata({ params }: ProductPageProps) {
-  const { id } = await params;
-  const productId = Number.parseInt(id);
-
-  if (Number.isNaN(productId) || productId <= 0) {
-    return {
-      title: 'Producto no encontrado',
-      description: 'El producto solicitado no existe.',
-    };
-  }
-
-  try {
-    // En un caso real, podrías hacer fetch del producto aquí para metadata
-    return {
-      title: `Producto ${productId} - Mi Tienda`,
-      description: `Detalles del producto ${productId}`,
-    };
-  } catch {
-    return {
-      title: 'Producto no encontrado',
-      description: 'El producto solicitado no existe.',
-    };
-  }
 }
