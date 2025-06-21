@@ -1,14 +1,6 @@
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-    title: 'Sin conexión - Éxito Store',
-    description:
-        'No tienes conexión a internet. Algunos productos pueden estar disponibles en tu caché local.',
-    robots: {
-        index: false,
-        follow: false,
-    },
-};
+// Note: metadata should be handled by the layout or moved to a server component wrapper
 
 export default function OfflinePage() {
     return (
