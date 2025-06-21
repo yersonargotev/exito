@@ -89,7 +89,7 @@ export default function RootLayout({
         <Providers>
           <div className="flex min-h-screen flex-col">
             <Suspense
-              fallback={<div className='h-16 border-b bg-background' />}
+              fallback={<div className="h-16 border-b bg-background" />}
             >
               <Header />
             </Suspense>

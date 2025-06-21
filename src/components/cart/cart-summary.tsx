@@ -48,7 +48,10 @@ export function CartSummary({
   };
 
   return (
-    <div data-testid="cart-total" className="sticky top-4 rounded-lg border border-border bg-card p-6">
+    <div
+      data-testid="cart-total"
+      className="sticky top-4 rounded-lg border border-border bg-card p-6"
+    >
       <div className="mb-4 flex items-center gap-2">
         <ShoppingBag className="h-5 w-5 text-primary" />
         <h2 className="font-semibold text-foreground text-xl">
@@ -98,7 +101,12 @@ export function CartSummary({
 
       {/* Botones de acción */}
       <div className="space-y-3">
-        <Button data-testid="checkout-button" className="w-full" size="lg" onClick={handleCheckout}>
+        <Button
+          data-testid="checkout-button"
+          className="w-full"
+          size="lg"
+          onClick={handleCheckout}
+        >
           <CreditCard className="mr-2 h-4 w-4" />
           Proceder al pago
         </Button>

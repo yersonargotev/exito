@@ -141,7 +141,7 @@ export function Header() {
                           onClick={() => handleCategorySelect(category)}
                           className="block select-none space-y-1 rounded-md p-3 text-left leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                         >
-                          <div className='font-medium text-sm capitalize leading-none'>
+                          <div className="font-medium text-sm capitalize leading-none">
                             {category === 'electronics' && 'Electrónicos'}
                             {category === "men's clothing" && 'Ropa de Hombre'}
                             {category === "women's clothing" && 'Ropa de Mujer'}
@@ -203,7 +203,7 @@ export function Header() {
               placeholder="Buscar productos..."
               value={searchQuery}
               onChange={(e) => handleSearchChange(e.target.value)}
-              className='pr-10 pl-10'
+              className="pr-10 pl-10"
               data-testid="search-input"
             />
             {searchQuery && (
@@ -237,7 +237,7 @@ export function Header() {
               <ShoppingCart className="h-5 w-5" />
               <Badge
                 data-testid="cart-badge"
-                variant={totalItems > 0 ? "destructive" : "secondary"}
+                variant={totalItems > 0 ? 'destructive' : 'secondary'}
                 className="-top-2 -right-2 absolute flex h-5 w-5 items-center justify-center rounded-full p-0 text-xs"
               >
                 {totalItems > 99 ? '99+' : totalItems}
@@ -276,7 +276,7 @@ export function Header() {
               placeholder="Buscar productos..."
               value={searchQuery}
               onChange={(e) => handleSearchChange(e.target.value)}
-              className='pr-10 pl-10'
+              className="pr-10 pl-10"
               autoFocus
             />
             {searchQuery && (

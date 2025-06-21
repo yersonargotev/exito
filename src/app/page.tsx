@@ -7,8 +7,17 @@ export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Éxito Store - Tu tienda online de confianza',
-  description: 'Descubre los mejores productos en Éxito Store. Electrónicos, ropa, joyería y más con las mejores ofertas y envío gratis.',
-  keywords: ['tienda online', 'electronics', 'ropa', 'joyería', 'ofertas', 'colombia', 'exito'],
+  description:
+    'Descubre los mejores productos en Éxito Store. Electrónicos, ropa, joyería y más con las mejores ofertas y envío gratis.',
+  keywords: [
+    'tienda online',
+    'electronics',
+    'ropa',
+    'joyería',
+    'ofertas',
+    'colombia',
+    'exito',
+  ],
   openGraph: {
     title: 'Éxito Store - Tu tienda online de confianza',
     description: 'Descubre los mejores productos con las mejores ofertas.',

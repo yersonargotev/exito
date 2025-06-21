@@ -37,8 +37,9 @@ export function ProductImage({ product }: ProductImageProps) {
         alt={product.title}
         fill
         data-testid="product-image"
-        className={`object-contain p-3 transition-opacity duration-300 sm:p-4 ${imageLoading ? 'opacity-0' : 'opacity-100'
-          }`}
+        className={`object-contain p-3 transition-opacity duration-300 sm:p-4 ${
+          imageLoading ? 'opacity-0' : 'opacity-100'
+        }`}
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
         priority
         onLoad={() => setImageLoading(false)}

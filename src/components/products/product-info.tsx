@@ -27,12 +27,13 @@ export function ProductInfo({ product }: ProductInfoProps) {
     return Array.from({ length: 5 }, (_, index) => (
       <Star
         key={`star-${index}-${rating}`}
-        className={`h-4 w-4 ${index < Math.floor(rating)
-          ? 'fill-current text-yellow-400'
-          : index < rating
-            ? 'fill-current text-yellow-400 opacity-50'
-            : 'text-muted-foreground'
-          }`}
+        className={`h-4 w-4 ${
+          index < Math.floor(rating)
+            ? 'fill-current text-yellow-400'
+            : index < rating
+              ? 'fill-current text-yellow-400 opacity-50'
+              : 'text-muted-foreground'
+        }`}
       />
     ));
   };
@@ -48,7 +49,10 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
       {/* Title */}
       <div>
-        <h1 data-testid="product-title" className="font-bold text-foreground text-xl leading-tight sm:text-2xl lg:text-3xl">
+        <h1
+          data-testid="product-title"
+          className="font-bold text-foreground text-xl leading-tight sm:text-2xl lg:text-3xl"
+        >
           {product.title}
         </h1>
       </div>
@@ -69,7 +73,10 @@ export function ProductInfo({ product }: ProductInfoProps) {
       {/* Price */}
       <div className="space-y-2">
         <div className="flex items-baseline gap-2">
-          <span data-testid="product-price" className="font-bold text-2xl text-foreground sm:text-3xl lg:text-4xl">
+          <span
+            data-testid="product-price"
+            className="font-bold text-2xl text-foreground sm:text-3xl lg:text-4xl"
+          >
             {formatPrice(product.price)}
           </span>
           <span className="text-muted-foreground text-sm line-through">
@@ -81,7 +88,10 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
       {/* Short description */}
       <div className="border-border border-t pt-4">
-        <p data-testid="product-description" className="text-muted-foreground text-sm leading-relaxed sm:text-base">
+        <p
+          data-testid="product-description"
+          className="text-muted-foreground text-sm leading-relaxed sm:text-base"
+        >
           {product.description.length > 200
             ? `${product.description.substring(0, 200)}...`
             : product.description}

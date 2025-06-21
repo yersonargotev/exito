@@ -11,7 +11,10 @@ interface ProductCardProps {
   className?: string;
 }
 
-export const ProductCard = memo(function ProductCard({ product, className }: ProductCardProps) {
+export const ProductCard = memo(function ProductCard({
+  product,
+  className,
+}: ProductCardProps) {
   const {
     quantity,
     isInCart,
@@ -85,7 +88,10 @@ export const ProductCard = memo(function ProductCard({ product, className }: Pro
 
         {/* Precio */}
         <div className="flex items-center justify-between">
-          <span data-testid="product-price" className="font-bold text-base sm:text-lg">
+          <span
+            data-testid="product-price"
+            className="font-bold text-base sm:text-lg"
+          >
             ${product.price.toFixed(2)}
           </span>
         </div>
@@ -115,7 +121,10 @@ export const ProductCard = memo(function ProductCard({ product, className }: Pro
                 >
                   <Minus className="h-3 w-3" />
                 </button>
-                <span data-testid="quantity-display" className="min-w-[1.5rem] text-center font-medium text-xs sm:min-w-[2rem] sm:text-sm">
+                <span
+                  data-testid="quantity-display"
+                  className="min-w-[1.5rem] text-center font-medium text-xs sm:min-w-[2rem] sm:text-sm"
+                >
                   {quantity}
                 </span>
                 <button

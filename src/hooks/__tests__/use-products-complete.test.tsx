@@ -118,7 +118,7 @@ describe('useProducts Hooks', () => {
         () => {
           expect(result.current.isError).toBe(true);
         },
-        { timeout: 10000 }
+        { timeout: 10000 },
       );
 
       expect(result.current.error).toBeInstanceOf(Error);
@@ -174,7 +174,7 @@ describe('useProducts Hooks', () => {
         () => {
           expect(result.current.isError).toBe(true);
         },
-        { timeout: 10000 }
+        { timeout: 10000 },
       );
 
       expect(result.current.error).toBeInstanceOf(Error);
@@ -223,7 +223,7 @@ describe('useProducts Hooks', () => {
         () => {
           expect(result.current.isError).toBe(true);
         },
-        { timeout: 10000 }
+        { timeout: 10000 },
       );
 
       expect(result.current.error).toBeInstanceOf(Error);
@@ -409,7 +409,7 @@ describe('useProducts Hooks', () => {
         () => {
           expect(result.current.isError).toBe(true);
         },
-        { timeout: 10000 }
+        { timeout: 10000 },
       );
 
       expect(result.current.error).toBeInstanceOf(Error);

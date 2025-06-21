@@ -42,8 +42,9 @@ export function QuantityControls({
 
       <span
         data-testid="quantity-display"
-        className={`min-w-[2rem] text-center font-medium ${size === 'sm' ? 'text-sm' : 'text-base'
-          }`}
+        className={`min-w-[2rem] text-center font-medium ${
+          size === 'sm' ? 'text-sm' : 'text-base'
+        }`}
       >
         {quantity}
       </span>

@@ -52,7 +52,10 @@ export const CartItemComponent = memo(function CartItemComponent({
   };
 
   return (
-    <div data-testid="cart-item" className="flex flex-col gap-4 rounded-lg border border-border bg-card p-4 sm:flex-row">
+    <div
+      data-testid="cart-item"
+      className="flex flex-col gap-4 rounded-lg border border-border bg-card p-4 sm:flex-row"
+    >
       {/* Imagen del producto */}
       <div className="mx-auto flex-shrink-0 sm:mx-0">
         <div className="relative h-24 w-24 overflow-hidden rounded-md bg-white sm:h-20 sm:w-20">

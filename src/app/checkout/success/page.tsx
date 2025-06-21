@@ -7,7 +7,8 @@ export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Compra Exitosa - Pedido Confirmado | Exito',
-  description: 'Tu compra ha sido procesada exitosamente. Revisa los detalles de tu pedido y fecha de entrega estimada.',
+  description:
+    'Tu compra ha sido procesada exitosamente. Revisa los detalles de tu pedido y fecha de entrega estimada.',
   robots: {
     index: false, // No indexar páginas de éxito por privacidad
     follow: false,
