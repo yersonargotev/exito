@@ -288,6 +288,7 @@ describe('useProducts Hooks', () => {
       data: mockProducts,
       hasNextPage: true,
       nextCursor: 2,
+      totalCount: 10,
     };
 
     it('should fetch and return infinite products successfully', async () => {
@@ -308,8 +309,8 @@ describe('useProducts Hooks', () => {
       expect(result.current.data?.pages).toHaveLength(1);
       expect(result.current.data?.pages[0]).toEqual(mockPaginatedResponse);
       expect(api.getProductsPaginated).toHaveBeenCalledWith({
-        page: 1,
-        limit: 20,
+        pageParam: 0,
+        limit: 8,
         search: undefined,
         category: undefined,
       });
@@ -331,7 +332,7 @@ describe('useProducts Hooks', () => {
 
       await waitFor(() => {
         expect(api.getProductsPaginated).toHaveBeenCalledWith({
-          page: 1,
+          pageParam: 0,
           limit: 10,
           search: 'test',
           category: 'electronics',
@@ -346,6 +347,7 @@ describe('useProducts Hooks', () => {
           data: [mockProducts[1]],
           hasNextPage: false,
           nextCursor: null,
+          totalCount: 10,
         });
 
       const { result } = renderHook(() => useInfiniteProducts({}), {
