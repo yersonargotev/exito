@@ -147,17 +147,19 @@ export function A11yProvider({ children }: A11yProviderProps) {
       {children}
 
       {/* Región para anuncios a lectores de pantalla */}
-      <div
-        aria-live="polite"
-        aria-atomic="true"
-        className="sr-only"
-        role="status"
-      >
-        {announcements.map((announcement, index) => (
-          // biome-ignore lint/suspicious/noArrayIndexKey: Index is stable for announcements
-          <span key={index}>{announcement}</span>
-        ))}
-      </div>
+      {announcements.length > 0 && (
+        <div
+          aria-live="polite"
+          aria-atomic="true"
+          className="sr-only"
+          role="status"
+        >
+          {announcements.map((announcement, index) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: Index is stable for announcements
+            <span key={index}>{announcement}</span>
+          ))}
+        </div>
+      )}
     </A11yContext.Provider>
   );
 }

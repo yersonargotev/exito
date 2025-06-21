@@ -9,7 +9,7 @@ test.describe('E-commerce Application', () => {
 
   test('should display the home page with products', async ({ page }) => {
     // Check if the page loads correctly
-    await expect(page).toHaveTitle(/Éxito Store/);
+    await expect(page).toHaveTitle(/Productos de calidad al mejor precio/);
 
     // Wait for products to load
     await page.waitForSelector('[data-testid="product-card"]', {

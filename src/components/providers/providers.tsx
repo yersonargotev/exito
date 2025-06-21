@@ -15,7 +15,17 @@ export function Providers({ children }: { children: React.ReactNode }) {
       >
         <CartHydration />
         <NuqsAdapter>{children}</NuqsAdapter>
-        <Toaster richColors position="top-right" />
+        <Toaster
+          richColors
+          position="top-right"
+          toastOptions={{
+            style: {
+              '--error-bg': '#fef2f2',
+              '--error-text': '#b91c1c',
+              '--error-border': '#fecaca',
+            } as React.CSSProperties,
+          }}
+        />
       </ThemeProvider>
     </QueryProvider>
   );
