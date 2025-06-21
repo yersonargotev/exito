@@ -21,6 +21,31 @@ Una aplicación de comercio electrónico moderna desarrollada con **Next.js 15**
 - **Cálculo automático** de totales y envío
 - **Diseño responsive** mobile-first
 
+### ❤️ **Sistema de Favoritos/Wishlist**
+- **Lista de deseos persistente** con localStorage
+- **Indicadores visuales** en productos y header
+- **Página dedicada** para gestión de favoritos
+- **Integración completa** con el catálogo
+
+### ⚖️ **Comparación de Productos**
+- **Comparar hasta 3 productos** lado a lado
+- **Tabla comparativa detallada** con especificaciones
+- **Gestión intuitiva** con límites automáticos
+- **Persistencia de selección**
+
+### ⭐ **Reviews y Calificaciones**
+- **Sistema completo de reviews** con calificaciones por estrellas
+- **Formulario para nuevas reviews** con validación
+- **Resumen estadístico** de calificaciones
+- **Filtros y ordenamiento** por utilidad y fecha
+- **Integración en detalle de producto**
+
+### 🔍 **Filtros Avanzados**
+- **Filtros por rango de precio** con sliders
+- **Filtros por calificación** de estrellas
+- **Filtros por disponibilidad** y stock
+- **Interfaz colapsible** para mejor organización
+
 ### 💳 **Proceso de Pago**
 - **Checkout multi-step** con validación en tiempo real
 - **Formularios avanzados** con TanStack Form + Zod

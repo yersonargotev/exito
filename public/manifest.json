@@ -1,0 +1,51 @@
+{
+  "name": "Éxito Store - Tu tienda online de confianza",
+  "short_name": "Éxito Store",
+  "description": "Descubre los mejores productos en Éxito Store. Electrónicos, ropa, joyería y más con las mejores ofertas y envío gratis.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ea384c",
+  "orientation": "portrait-primary",
+  "categories": ["shopping", "business"],
+  "lang": "es",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Carrito de compras",
+      "short_name": "Carrito",
+      "description": "Ver mi carrito de compras",
+      "url": "/cart",
+      "icons": [{ "src": "/web-app-manifest-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Ofertas",
+      "short_name": "Ofertas",
+      "description": "Ver ofertas especiales",
+      "url": "/?category=electronics",
+      "icons": [{ "src": "/web-app-manifest-192x192.png", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "label": "Página principal de Éxito Store"
+    }
+  ]
+}

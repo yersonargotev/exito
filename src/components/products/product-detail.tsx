@@ -4,6 +4,9 @@ import { ProductActions } from '@/components/products/product-actions';
 import { ProductBreadcrumb } from '@/components/products/product-breadcrumb';
 import { ProductImage } from '@/components/products/product-image';
 import { ProductInfo } from '@/components/products/product-info';
+import { ReviewForm } from '@/components/reviews/review-form';
+import { ReviewList } from '@/components/reviews/review-list';
+import { ReviewSummary } from '@/components/reviews/review-summary';
 import { Button } from '@/components/ui/button';
 import { ErrorMessage } from '@/components/ui/error-message';
 import { useProductCart } from '@/hooks/use-cart';
@@ -120,6 +123,33 @@ export function ProductDetail({ productId }: ProductDetailProps) {
             <p className="text-lg text-muted-foreground leading-relaxed">
               {product.description}
             </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Reviews section */}
+      <div className="mt-12 border-border border-t pt-8">
+        <div className="max-w-4xl">
+          <h2 className="mb-6 font-bold text-2xl text-foreground">
+            Reseñas y calificaciones
+          </h2>
+
+          {/* Review Summary */}
+          <div className="mb-8">
+            <ReviewSummary productId={product.id} />
+          </div>
+
+          {/* Reviews and Form Grid */}
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            {/* Review Form */}
+            <div>
+              <ReviewForm productId={product.id} />
+            </div>
+
+            {/* Review List */}
+            <div>
+              <ReviewList productId={product.id} />
+            </div>
           </div>
         </div>
       </div>
