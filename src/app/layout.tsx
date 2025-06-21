@@ -9,6 +9,25 @@ export const metadata: Metadata = {
   title: 'Exito - E-commerce',
   description: 'Exito - E-commerce',
   icons: [{ rel: 'icon', url: '/favicon.ico' }],
+  openGraph: {
+    title: 'Exito - E-commerce',
+    description: 'Exito - E-commerce',
+    images: [
+      {
+        url: '/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Exito - E-commerce',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Exito - E-commerce',
+    description: 'Exito - E-commerce',
+    images: ['/og.png'],
+  },
 };
 
 const geist = Geist({
