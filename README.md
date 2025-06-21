@@ -4,7 +4,7 @@ Una aplicación de comercio electrónico moderna desarrollada con **Next.js 15**
 
 ## 🚀 Demo en Vivo
 
-🔗 **[Ver aplicación desplegada](https://tu-app-desplegada.vercel.app)** *(Actualizar con el link real)*
+🔗 **[Ver aplicación desplegada](https://exito-nine.vercel.app/)**
 
 ## ✨ Características Principales
 
@@ -76,7 +76,7 @@ Una aplicación de comercio electrónico moderna desarrollada con **Next.js 15**
 
 1. **Clonar el repositorio**
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/yersonargotev/exito.git
 cd exito
 ```
 
