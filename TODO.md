@@ -185,22 +185,6 @@ Desarrollar una aplicación de e-commerce con React/Next.js que incluya lista de
   - [x] **Navegación fluida** entre steps con validación
   - [x] **Resumen dinámico** del pedido en tiempo real
 
-## 🎨 Componentes UI
-
-### Componentes Base
-- [ ] Crear componente `ProductCard`
-- [ ] Crear componente `CartItem`
-- [ ] Crear componente `SearchInput`
-- [ ] Crear componente `QuantitySelector`
-- [ ] Crear componente `PriceDisplay`
-- [ ] Crear componente `LoadingSpinner`
-- [ ] Crear componente `ErrorMessage`
-
-### Componentes de Layout
-- [ ] Crear componente `Container` para ancho máximo
-- [ ] Crear componente `Section` para secciones
-- [ ] Crear componente `Breadcrumb`
-
 ## 📱 Responsive Design
 - [ ] Asegurar que todas las páginas sean responsive
 - [ ] Probar en dispositivos móviles, tablets y desktop
