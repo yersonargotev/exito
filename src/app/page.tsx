@@ -3,21 +3,72 @@
 import { ProductsFilters } from '@/components/products/products-filters';
 import { ProductsList } from '@/components/products/products-list';
 import type { ProductCategory } from '@/lib/types';
-import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
 
 export default function HomePage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState<ProductCategory | undefined>(
     undefined,
   );
 
-  const handleSearchChange = (newSearch: string) => {
-    setSearch(newSearch);
-  };
+  // Sync state with URL parameters on mount and when params change
+  useEffect(() => {
+    const urlSearch = searchParams.get('search') || '';
+    const urlCategory = searchParams.get('category') as ProductCategory | null;
 
-  const handleCategoryChange = (newCategory: ProductCategory | undefined) => {
+    setSearch(urlSearch);
+    setCategory(urlCategory || undefined);
+  }, [searchParams]);
+
+  // Update URL when search changes
+  const handleSearchChange = useCallback((newSearch: string) => {
+    setSearch(newSearch);
+
+    const params = new URLSearchParams(searchParams);
+    if (newSearch.trim()) {
+      params.set('search', newSearch.trim());
+    } else {
+      params.delete('search');
+    }
+
+    // Keep category if it exists
+    if (category) {
+      params.set('category', category);
+    }
+
+    const newUrl = params.toString() ? `/?${params.toString()}` : '/';
+    router.replace(newUrl, { scroll: false });
+  }, [router, searchParams, category]);
+
+  // Update URL when category changes
+  const handleCategoryChange = useCallback((newCategory: ProductCategory | undefined) => {
     setCategory(newCategory);
-  };
+
+    const params = new URLSearchParams(searchParams);
+    if (newCategory) {
+      params.set('category', newCategory);
+    } else {
+      params.delete('category');
+    }
+
+    // Keep search if it exists
+    if (search.trim()) {
+      params.set('search', search.trim());
+    }
+
+    const newUrl = params.toString() ? `/?${params.toString()}` : '/';
+    router.replace(newUrl, { scroll: false });
+  }, [router, searchParams, search]);
+
+  // Clear all filters
+  const clearAllFilters = useCallback(() => {
+    setSearch('');
+    setCategory(undefined);
+    router.replace('/', { scroll: false });
+  }, [router]);
 
   return (
     <div className="container mx-auto px-4 py-4 sm:py-8">
@@ -46,10 +97,14 @@ export default function HomePage() {
           <button
             type="button"
             onClick={() => {
-              // Aplicar filtro de ofertas (productos con precio < 50)
-              setSearch('');
-              setCategory(undefined);
-              // En una implementación real, podríamos tener un filtro específico para ofertas
+              // Clear current filters and show all products
+              clearAllFilters();
+              // Scroll to products section
+              setTimeout(() => {
+                const productsSection =
+                  document.getElementById('products-section');
+                productsSection?.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
             }}
             className="rounded-lg border border-border px-6 py-2 font-semibold text-sm transition-colors hover:bg-muted sm:px-8 sm:py-3 sm:text-base"
           >

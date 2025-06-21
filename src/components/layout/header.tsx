@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
+import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -18,16 +19,78 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
+import { useCartTotals } from '@/hooks/use-cart';
+import { useCategories } from '@/hooks/use-products';
 import { Menu, Search, ShoppingCart, X } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
 
 export function Header() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  // Temporary cart count - this will be replaced with actual cart state
-  const cartItemCount = 3;
+  // Cart integration
+  const { totalItems } = useCartTotals();
+
+  // Categories integration
+  const { data: categories, isLoading: categoriesLoading } = useCategories();
+
+  // Initialize search from URL params
+  useEffect(() => {
+    const urlSearch = searchParams.get('search');
+    if (urlSearch) {
+      setSearchQuery(urlSearch);
+    }
+  }, [searchParams]);
+
+  // Handle search submission
+  const handleSearch = useCallback(
+    (query: string) => {
+      const trimmedQuery = query.trim();
+
+      if (trimmedQuery) {
+        // Navigate to home page with search params
+        router.push(`/?search=${encodeURIComponent(trimmedQuery)}`);
+      } else {
+        // Clear search if empty
+        router.push('/');
+      }
+
+      // Close mobile search on submit
+      setIsSearchOpen(false);
+    },
+    [router],
+  );
+
+  // Handle search input changes
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
+  };
+
+  // Handle search form submission
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    handleSearch(searchQuery);
+  };
+
+  // Handle category selection
+  const handleCategorySelect = useCallback(
+    (category: string) => {
+      router.push(`/?category=${encodeURIComponent(category)}`);
+      setIsMobileMenuOpen(false);
+    },
+    [router],
+  );
+
+  // Clear search
+  const clearSearch = () => {
+    setSearchQuery('');
+    router.push('/');
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-border border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -66,45 +129,51 @@ export function Header() {
                       </Link>
                     </NavigationMenuLink>
                   </div>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      href="/category/electronics"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                    >
-                      <div className="font-medium text-sm leading-none">
-                        Electrónicos
-                      </div>
-                      <p className="line-clamp-2 text-muted-foreground text-sm leading-snug">
-                        Smartphones, laptops, tablets y más
-                      </p>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      href="/category/clothing"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                    >
-                      <div className="font-medium text-sm leading-none">
-                        Ropa
-                      </div>
-                      <p className="line-clamp-2 text-muted-foreground text-sm leading-snug">
-                        Moda para hombre y mujer
-                      </p>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      href="/category/jewelery"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                    >
-                      <div className="font-medium text-sm leading-none">
-                        Joyería
-                      </div>
-                      <p className="line-clamp-2 text-muted-foreground text-sm leading-snug">
-                        Anillos, collares y accesorios
-                      </p>
-                    </Link>
-                  </NavigationMenuLink>
+                  {categoriesLoading ? (
+                    <div className="col-span-1 flex items-center justify-center p-4">
+                      <LoadingSpinner size="sm" text="Cargando..." />
+                    </div>
+                  ) : (
+                    categories?.map((category) => (
+                      <NavigationMenuLink key={category} asChild>
+                        <button
+                          type="button"
+                          onClick={() => handleCategorySelect(category)}
+                          className="block select-none space-y-1 rounded-md p-3 text-left leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div className='font-medium text-sm capitalize leading-none'>
+                            {category === 'electronics' && 'Electrónicos'}
+                            {category === "men's clothing" && 'Ropa de Hombre'}
+                            {category === "women's clothing" && 'Ropa de Mujer'}
+                            {category === 'jewelery' && 'Joyería'}
+                            {![
+                              'electronics',
+                              "men's clothing",
+                              "women's clothing",
+                              'jewelery',
+                            ].includes(category) && category}
+                          </div>
+                          <p className="line-clamp-2 text-muted-foreground text-sm leading-snug">
+                            {category === 'electronics' &&
+                              'Smartphones, laptops, tablets y más'}
+                            {category === "men's clothing" &&
+                              'Moda masculina y accesorios'}
+                            {category === "women's clothing" &&
+                              'Moda femenina y accesorios'}
+                            {category === 'jewelery' &&
+                              'Anillos, collares y accesorios'}
+                            {![
+                              'electronics',
+                              "men's clothing",
+                              "women's clothing",
+                              'jewelery',
+                            ].includes(category) &&
+                              'Productos de esta categoría'}
+                          </p>
+                        </button>
+                      </NavigationMenuLink>
+                    ))
+                  )}
                 </div>
               </NavigationMenuContent>
             </NavigationMenuItem>
@@ -127,14 +196,25 @@ export function Header() {
 
         {/* Search Bar - Desktop */}
         <div className="mx-8 hidden max-w-md flex-1 lg:flex">
-          <div className="relative w-full">
+          <form onSubmit={handleSearchSubmit} className="relative w-full">
             <Search className="-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 text-muted-foreground" />
             <Input
               type="search"
               placeholder="Buscar productos..."
-              className="pl-10"
+              value={searchQuery}
+              onChange={(e) => handleSearchChange(e.target.value)}
+              className='pr-10 pl-10'
             />
-          </div>
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={clearSearch}
+                className="-translate-y-1/2 absolute top-1/2 right-3 h-4 w-4 text-muted-foreground hover:text-foreground"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            )}
+          </form>
         </div>
 
         {/* Right side actions */}
@@ -154,15 +234,18 @@ export function Header() {
           <Button variant="ghost" size="icon" asChild className="relative">
             <Link href="/cart">
               <ShoppingCart className="h-5 w-5" />
-              {cartItemCount > 0 && (
+              {totalItems > 0 && (
                 <Badge
                   variant="destructive"
                   className="-top-2 -right-2 absolute flex h-5 w-5 items-center justify-center rounded-full p-0 text-xs"
                 >
-                  {cartItemCount}
+                  {totalItems > 99 ? '99+' : totalItems}
                 </Badge>
               )}
-              <span className="sr-only">Carrito de compras</span>
+              <span className="sr-only">
+                Carrito de compras ({totalItems}{' '}
+                {totalItems === 1 ? 'artículo' : 'artículos'})
+              </span>
             </Link>
           </Button>
 
@@ -186,15 +269,26 @@ export function Header() {
       {/* Mobile Search Bar */}
       {isSearchOpen && (
         <div className="border-border border-t bg-background p-4 md:hidden">
-          <div className="relative">
+          <form onSubmit={handleSearchSubmit} className="relative">
             <Search className="-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 text-muted-foreground" />
             <Input
               type="search"
               placeholder="Buscar productos..."
-              className="pl-10"
+              value={searchQuery}
+              onChange={(e) => handleSearchChange(e.target.value)}
+              className='pr-10 pl-10'
               autoFocus
             />
-          </div>
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={clearSearch}
+                className="-translate-y-1/2 absolute top-1/2 right-3 h-4 w-4 text-muted-foreground hover:text-foreground"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            )}
+          </form>
         </div>
       )}
 
@@ -206,18 +300,35 @@ export function Header() {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="justify-start">
                   Categorías
+                  {categoriesLoading && (
+                    <LoadingSpinner size="sm" className="ml-2" />
+                  )}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-56">
                 <DropdownMenuItem asChild>
-                  <Link href="/category/electronics">Electrónicos</Link>
+                  <Link href="/">Todas las categorías</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/category/clothing">Ropa</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/category/jewelery">Joyería</Link>
-                </DropdownMenuItem>
+                {categories?.map((category) => (
+                  <DropdownMenuItem key={category} asChild>
+                    <button
+                      type="button"
+                      onClick={() => handleCategorySelect(category)}
+                      className="w-full text-left capitalize"
+                    >
+                      {category === 'electronics' && 'Electrónicos'}
+                      {category === "men's clothing" && 'Ropa de Hombre'}
+                      {category === "women's clothing" && 'Ropa de Mujer'}
+                      {category === 'jewelery' && 'Joyería'}
+                      {![
+                        'electronics',
+                        "men's clothing",
+                        "women's clothing",
+                        'jewelery',
+                      ].includes(category) && category}
+                    </button>
+                  </DropdownMenuItem>
+                ))}
               </DropdownMenuContent>
             </DropdownMenu>
             <Link href="/ofertas" className="block py-2 font-medium text-sm">
