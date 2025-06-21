@@ -60,24 +60,6 @@ export function Footer() {
               >
                 Inicio
               </Link>
-              <Link
-                href="/productos"
-                className="text-muted-foreground text-sm transition-colors hover:text-foreground"
-              >
-                Productos
-              </Link>
-              <Link
-                href="/ofertas"
-                className="text-muted-foreground text-sm transition-colors hover:text-foreground"
-              >
-                Ofertas
-              </Link>
-              <Link
-                href="/nosotros"
-                className="text-muted-foreground text-sm transition-colors hover:text-foreground"
-              >
-                Nosotros
-              </Link>
             </nav>
           </div>
 
@@ -86,34 +68,22 @@ export function Footer() {
             <h3 className="font-semibold">Servicio al Cliente</h3>
             <nav className="flex flex-col space-y-2">
               <Link
-                href="/ayuda"
+                href="/"
                 className="text-muted-foreground text-sm transition-colors hover:text-foreground"
               >
                 Centro de Ayuda
               </Link>
               <Link
-                href="/envios"
+                href="/"
                 className="text-muted-foreground text-sm transition-colors hover:text-foreground"
               >
                 Información de Envíos
               </Link>
               <Link
-                href="/devoluciones"
+                href="/"
                 className="text-muted-foreground text-sm transition-colors hover:text-foreground"
               >
-                Devoluciones
-              </Link>
-              <Link
-                href="/garantia"
-                className="text-muted-foreground text-sm transition-colors hover:text-foreground"
-              >
-                Garantía
-              </Link>
-              <Link
-                href="/contacto"
-                className="text-muted-foreground text-sm transition-colors hover:text-foreground"
-              >
-                Contactanos
+                Devoluciones y Cambios
               </Link>
             </nav>
           </div>
@@ -121,28 +91,18 @@ export function Footer() {
           {/* Contact Information */}
           <div className="space-y-4">
             <h3 className="font-semibold">Contacto</h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <MapPin className="h-4 w-4 text-muted-foreground" />
-                <div>
-                  <p className="text-muted-foreground text-sm">
-                    Carrera 7 #32-16
-                    <br />
-                    Bogotá, Colombia
-                  </p>
-                </div>
+            <div className='space-y-2 text-muted-foreground text-sm'>
+              <div className="flex items-center space-x-2">
+                <MapPin className="h-4 w-4" />
+                <span>Calle Falsa 123, Medellín, Colombia</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="h-4 w-4 text-muted-foreground" />
-                <p className="text-muted-foreground text-sm">
-                  +57 (1) 555-0123
-                </p>
+              <div className="flex items-center space-x-2">
+                <Phone className="h-4 w-4" />
+                <span>+57 300 123 4567</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="h-4 w-4 text-muted-foreground" />
-                <p className="text-muted-foreground text-sm">
-                  info@exito-store.com
-                </p>
+              <div className="flex items-center space-x-2">
+                <Mail className="h-4 w-4" />
+                <span>contacto@exito.com</span>
               </div>
             </div>
           </div>
