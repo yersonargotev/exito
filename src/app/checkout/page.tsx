@@ -162,7 +162,7 @@ export default function CheckoutPage() {
           </div>
 
           {/* Formularios - Ocupa 2/5 en desktop */}
-          <div className="lg:col-span-2">
+          <div data-testid="checkout-form" className="lg:col-span-2">
             {/* Stepper móvil */}
             <div className="mb-6 lg:hidden">
               <CheckoutSteps currentStep={currentStep} />

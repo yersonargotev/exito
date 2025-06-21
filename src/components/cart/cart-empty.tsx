@@ -9,7 +9,7 @@ export function CartEmpty() {
         <ShoppingCart className="h-12 w-12 text-muted-foreground" />
       </div>
 
-      <h2 className="mb-2 font-semibold text-2xl text-foreground">
+      <h2 data-testid="empty-cart-message" className="mb-2 font-semibold text-2xl text-foreground">
         Tu carrito está vacío
       </h2>
 
@@ -19,7 +19,7 @@ export function CartEmpty() {
       </p>
 
       <Button asChild className="w-full sm:w-auto">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" data-testid="continue-shopping-link" className="flex items-center gap-2">
           <ArrowLeft className="h-4 w-4" />
           Continuar comprando
         </Link>

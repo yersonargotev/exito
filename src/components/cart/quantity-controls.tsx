@@ -35,14 +35,15 @@ export function QuantityControls({
         onClick={onDecrease}
         disabled={disabled || !canDecrease}
         aria-label="Disminuir cantidad"
+        data-testid="decrease-quantity"
       >
         <Minus className={iconSize} />
       </Button>
 
       <span
-        className={`min-w-[2rem] text-center font-medium ${
-          size === 'sm' ? 'text-sm' : 'text-base'
-        }`}
+        data-testid="quantity-display"
+        className={`min-w-[2rem] text-center font-medium ${size === 'sm' ? 'text-sm' : 'text-base'
+          }`}
       >
         {quantity}
       </span>
@@ -54,6 +55,7 @@ export function QuantityControls({
         onClick={onIncrease}
         disabled={disabled || !canIncrease}
         aria-label="Aumentar cantidad"
+        data-testid="increase-quantity"
       >
         <Plus className={iconSize} />
       </Button>

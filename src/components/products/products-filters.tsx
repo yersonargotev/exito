@@ -40,6 +40,7 @@ export function ProductsFilters({
           placeholder="Buscar productos..."
           value={search}
           onChange={(e) => onSearchChange(e.target.value)}
+          data-testid="search-input"
           className="w-full rounded-lg border border-border bg-background py-2.5 pr-4 pl-10 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 sm:py-2"
         />
         {search && (
@@ -94,6 +95,7 @@ export function ProductsFilters({
             <>
               <button
                 type="button"
+                data-testid="category-filter"
                 onClick={() => onCategoryChange(undefined)}
                 className={cn(
                   'rounded-full border px-3 py-1 text-sm transition-colors',
@@ -108,6 +110,7 @@ export function ProductsFilters({
                 <button
                   key={cat}
                   type="button"
+                  data-testid="category-filter"
                   onClick={() => onCategoryChange(cat as ProductCategory)}
                   className={cn(
                     'rounded-full border px-3 py-1 text-sm capitalize transition-colors',

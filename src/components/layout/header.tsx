@@ -204,6 +204,7 @@ export function Header() {
               value={searchQuery}
               onChange={(e) => handleSearchChange(e.target.value)}
               className='pr-10 pl-10'
+              data-testid="search-input"
             />
             {searchQuery && (
               <button
@@ -232,7 +233,7 @@ export function Header() {
 
           {/* Cart Button */}
           <Button variant="ghost" size="icon" asChild className="relative">
-            <Link href="/cart">
+            <Link href="/cart" data-testid="cart-link">
               <ShoppingCart className="h-5 w-5" />
               <Badge
                 data-testid="cart-badge"

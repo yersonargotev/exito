@@ -107,18 +107,22 @@ export function ProductCard({ product, className }: ProductCardProps) {
               <div className="flex items-center gap-1 sm:gap-2">
                 <button
                   type="button"
+                  data-testid="decrease-quantity"
                   onClick={handleDecreaseQuantity}
                   className="flex h-7 w-7 items-center justify-center rounded-md border border-border hover:bg-muted sm:h-8 sm:w-8"
+                  aria-label="Decrease quantity"
                 >
                   <Minus className="h-3 w-3" />
                 </button>
-                <span className="min-w-[1.5rem] text-center font-medium text-xs sm:min-w-[2rem] sm:text-sm">
+                <span data-testid="quantity-display" className="min-w-[1.5rem] text-center font-medium text-xs sm:min-w-[2rem] sm:text-sm">
                   {quantity}
                 </span>
                 <button
                   type="button"
+                  data-testid="increase-quantity"
                   onClick={handleIncreaseQuantity}
                   className="flex h-7 w-7 items-center justify-center rounded-md border border-border hover:bg-muted sm:h-8 sm:w-8"
+                  aria-label="Increase quantity"
                 >
                   <Plus className="h-3 w-3" />
                 </button>
