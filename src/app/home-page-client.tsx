@@ -69,13 +69,6 @@ export default function HomePageClient() {
     [router, searchParams, search],
   );
 
-  // Clear all filters
-  const clearAllFilters = useCallback(() => {
-    setSearch('');
-    setCategory(undefined);
-    router.replace('/', { scroll: false });
-  }, [router]);
-
   return (
     <div className="container mx-auto px-4 py-4 sm:py-8">
       {/* Hero Section */}
