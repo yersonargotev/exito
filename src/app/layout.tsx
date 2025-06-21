@@ -21,6 +21,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${geist.variable}`} suppressHydrationWarning>
+      <head>
+        <meta name="apple-mobile-web-app-title" content="Éxito Store" />
+      </head>
       <body>
         <Providers>
           <div className="flex min-h-screen flex-col">
